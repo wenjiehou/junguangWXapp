@@ -1,0 +1,6 @@
+{
+ "navigationBarTitleText": "小说",
+  "usingComponents": {
+    "book-reward": "../../../component/bookReward/bookReward"
+  }
+}

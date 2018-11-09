@@ -1,0 +1,21 @@
+<!--component/popBox/popBox.wxml-->
+<view wx:if='{{popModal}}' class='.pop-bg'>
+  <view class='container'>
+   <view class='content-top' >
+      <text style='font-size:36rpx;color:white'>{{title}}</text>
+   </view>
+   <view class='content-bottom'>
+      <view class='content-tf'>
+      <text style='font-size:26rpx;margin-left:30rpx;margin-right:30rpx;'>{{content}}</text>
+      </view>
+      <view class='content-btn' >
+       <view class='cancel-btn' hover-class="activity-hover" bindtap='ontapCancel'>
+         <text style='font-size:26rpx;margin-left:30rpx;margin-right:30rpx;'>{{cancelText}}</text>
+       </view>
+       <view class='confirm-btn' hover-class="activity-hover"  bindtap='ontapConfirm'>
+       <text style='font-size:26rpx;margin-left:30rpx;margin-right:30rpx;'>{{confirmText}}</text>
+       </view>
+      </view>
+   </view>
+  </view>
+</view>

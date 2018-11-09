@@ -1,0 +1,32 @@
+<!--component/getGift/getGift.wxml-->
+<wxs src="../../wxs/getGift.wxs" module="getGift" />
+
+<view style='width:100%;height:0rpx'>
+  <image src='{{getGift.list_bg_img}}' style='width:100%;height:132rpx;opacity:0.2'></image>
+</view>
+<swiper previous-margin="108rpx" next-margin="90rpx" autoplay="{{autoPlay}}" interval="2000" duration="1500" circular="true" skip-hidden-item-layout="true" style='height:132rpx;'>
+  <block wx:for="{{giftList}}" wx:key="user_id">
+    <swiper-item>
+    <view class='row-center' style='height:132rpx;'>
+     <view class="flex-wrpitem" hover-class="activity-hover">
+             <view style='display: flex;flex-direction: row;width:91rpx'>
+              <view class='img-view'>
+                <image src='{{item.head_img}}' class='img-head'></image>
+              </view>
+              <view class='img-view'>
+                <image src='{{getGift.list_toubg_img}}' class='img-head'></image>
+              </view>
+            </view>
+            <view class='column-center'>
+              <text class='playerAct-nametf'>{{item.name}}</text>
+              <view style='height:10rpx'></view>
+              <text class='playerAct-nametflin'>{{item.msg}}</text>
+            </view>
+            <text class='playerAct-occurtf'>{{item.occur_time}}</text>
+            <image src='{{item.gift.icon}}' style='width:51rpx;height:93rpx;'></image> 
+          </view>
+    </view>
+         
+    </swiper-item>
+  </block>
+</swiper>

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "福利转",
+  "usingComponents": {
+    "login-note":"../../common/component/loginNote/loginNote"
+  }
+}

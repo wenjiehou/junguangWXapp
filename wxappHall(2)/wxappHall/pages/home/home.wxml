@@ -1,0 +1,219 @@
+<view wx:if='{{verify==false}}'>
+  <!-- <swiper class='swiper-style' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicator_color}}" indicator-active-color="{{indicator_active_color}}" circular="{{circular}}">
+    <block wx:for="{{imgUrls}}" wx:key="id">
+      <swiper-item>
+        <image src="{{item.url}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper> -->
+  <!-- <view class="section">
+    <view class="flex-wrp">
+      <block wx:for="{{activitys}}" wx:key="id">
+        <view hover-class="activity-hover" bindtap='onTapAct' data-id='{{item.id}}'>
+          <image src="{{item.url}}" class="activity-img" />
+        </view>
+      </block>
+    </view>
+  </view> -->
+
+  <view class='wealth-container'>
+    <view class='wealth-content'>
+      <view class='wealth-item' hover-class="activity-hover" bindtap='gotoWealth'>
+        <image src='../../img/hongbao3.png' style='width:45rpx;height:45rpx;'></image>
+        <text style='color:white;font-size:26rpx;'>红包</text>
+        <view style='height:5rpx;'></view>
+        <text style='color:white;font-size:36rpx;'>{{mUserinfo.total_red_packet}}元</text>
+        <view style='height:5rpx;'></view>
+        <text style='color:white;font-size:22rpx;'>（已提现）</text>
+
+      </view>
+      <view class='v-fenge'></view>
+      <view class='wealth-item' hover-class="activity-hover" bindtap='gotoWealth'>
+        <image src='../../img/xianjin.png' style='width:51rpx;height:51rpx;'></image>
+        <text style='color:white;font-size:26rpx;'>零钱</text>
+        <view style='height:5rpx;'></view>
+        <text style='color:white;font-size:36rpx;'>{{mUserinfo.red_packet}}元</text>
+        <view style='height:5rpx;'></view>
+        <text style='color:white;font-size:22rpx;'>（待提现）</text>
+
+      </view>
+      <view class='v-fenge'></view>
+      <view class='wealth-item' hover-class="activity-hover" bindtap='gotoWealth'>
+        <image src='../../img/jinbi.png' style='width:46rpx;height:49rpx;'></image>
+        <text style='color:white;font-size:26rpx;'>金币</text>
+         <view style='height:5rpx;'></view>
+        <text style='color:white;font-size:36rpx;'>{{mUserinfo.gold_coins}}</text>
+      </view>
+    </view>
+
+  </view>
+
+  <gift-list giftList="{{giftList}}" autoPlay="{{autoPlay}}" />
+
+  <!-- 下面是游戏的 -->
+  <view style='display: flex;flex-direction:column;justify-content:start;margin-top: 35rpx;margin-left: 20rpx;margin-right: 20rpx;'>
+    <view style='display: flex;flex-direction:row;justify-content: space-between;width:100%;align-items: center;'>
+      <view style='display: flex;flex-direction:row;flex-direction:row;justify-content:start;align-items: center;'>
+        <image src='../../img/kanxiaoshuo.png' style='width:42rpx;height:43rpx;'></image>
+        <text style='color: #000000;font-family: "黑体";font-size:30rpx;margin-left: 10rpx;font-weight: 700;'>看小说赚现金</text>
+      </view>
+      <text style='color: #000000;font-family: "黑体";font-size:30rpx;margin-left: 10rpx;' bindtap='onToNovel'>更多...</text>
+    </view>
+    <view style='display: flex;flex-direction:column;justify-content:start;margin-top: 15rpx;margin-right: 20rpx;'>
+      <view class='fenge-content'></view>
+    </view>
+  </view>
+  <!-- 游戏列表 -->
+
+  <!-- <view style="display: flex;flex-direction:column;width:100%;margin-top: 0rpx;">
+
+  <block wx:for="{{gameList}}" wx:for-item="itemBig">
+
+    <view class='game-list' style='margin-top: 20rpx;'>
+      <block wx:for="{{itemBig}}">
+        <view style='display: flex;'>
+          <view hover-class="activity-hover" style='border-radius: 10px;display: flex;justify-content:space-around;align-items: center;'>
+            <image src='{{item.icon}}' style='width:221rpx;height:303rpx'></image>
+          </view>
+
+        </view>
+      </block>
+    </view>
+  </block>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+</view> -->
+
+
+  <view style="display: flex;flex-direction:column;">
+
+    <block wx:for="{{book_list}}" wx:for-item="novel_id">
+      <view style='height:6rpx;'></view>
+      <view wx:if='{{index%3==0}}' class='game-list' style='margin-top: 20rpx;margin-left: 40rpx;margin-right: 40rpx;'>
+
+        <block wx:for="{{[book_list[index],book_list[index+1],book_list[index+2]]}}">
+          <view style='display: flex;flex-direction: column;align-items: center;'>
+            <view hover-class="activity-hover" style='flex-direction: column;border-radius: 10px;display: flex;justify-content:space-around;align-items: center;' data-bookid='{{item.book_id}}' bindtap='onBookTap'>
+              <image src='{{item.book_list_img}}' style='width:185rpx;height:256rpx'></image>
+            </view>
+            <text style='color:black;font-size:24rpx;'>{{item.title}}</text>
+            <view class='h-view'>
+               <text style='color:black;font-size:24rpx;'>价值</text>
+               <text style='color:red;font-size:24rpx;'>{{item.game_value?item.game_value:5000}}</text>
+               <text style='color:black;font-size:24rpx;'>金币</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+  </view>
+
+  <button type='normal' bindtap='onReqPay'>请求支付</button>
+
+  <pop-reward showModal="{{showModal}}" popIndex="{{popIndex}}" mUserinfo='{{mUserinfo}}' />
+</view>
+<view wx:else>
+  <swiper class='swiper-style' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicator_color}}" indicator-active-color="{{indicator_active_color}}" circular="{{circular}}">
+    <block wx:for="{{imgUrls}}" wx:key="id">
+      <swiper-item>
+        <image src="{{item.url}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='wealth-container'>
+    <view class='wealth-content'>
+      <view class='wealth-item'>
+        <view style='display:flex;flex-direction:row;align-items:center;height:46rpx;'>
+          <text style='color:white;font-size:28rpx;'>现金红包</text>
+          <text style='color:white;font-size:22rpx;'>（已提现）</text>
+        </view>
+        <view style='height:20rpx;'></view>
+        <text style='color:white;font-size:36rpx;'>{{mUserinfo.total_red_packet}}元</text>
+      </view>
+      <view class='v-fenge'></view>
+      <view class='wealth-item'>
+        <view style='display:flex;flex-direction:row;align-items:center;height:46rpx;'>
+          <image src='../../img/story/coin.png' style='width:42rpx;height:42rpx;'></image>
+          <text style='color:white;font-size:28rpx;'>零钱</text>
+          <text style='color:white;font-size:22rpx;'>（待提现）</text>
+        </view>
+        <view style='height:20rpx;'></view>
+        <text style='color:white;font-size:36rpx;'>{{mUserinfo.red_packet}}元</text>
+      </view>
+      <view class='v-fenge'></view>
+      <view class='wealth-item'>
+        <view style='display:flex;flex-direction:row;align-items:center;height:46rpx;'>
+          <image src='../../img/wealth/yuedubi_icon.png' style='width:42rpx;height:42rpx;'></image>
+          <text style='color:white;font-size:28rpx;'>金币</text>
+        </view>
+        <view style='height:20rpx;'></view>
+        <text style='color:white;font-size:36rpx;'>{{mUserinfo.gold_coins}}</text>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- <view class="section">
+    <view class="flex-wrp">
+      <block wx:for="{{activitys}}" wx:key="id">
+        <view hover-class="activity-hover" bindtap='onTapAct' data-id='{{item.id}}'>
+          <image src="{{item.url}}" class="activity-img" />
+        </view>
+      </block>
+    </view>
+  </view> -->
+
+  <gift-list giftList="{{giftList}}" autoPlay="{{autoPlay}}" />
+
+  <!-- 下面是游戏的 -->
+  <view style='display: flex;flex-direction:column;justify-content:start;margin-top: 35rpx;margin-left: 20rpx;margin-right: 20rpx;'>
+    <view style='display: flex;flex-direction:row;justify-content: space-between;width:100%;align-items: center;'>
+      <view style='display: flex;flex-direction:row;flex-direction:row;justify-content:start;align-items: center;'>
+        <image src='../../img/kanxiaoshuo.png' style='width:42rpx;height:43rpx;'></image>
+        <text style='color: #000000;font-family: "黑体";font-size:30rpx;margin-left: 10rpx;font-weight: 700;'>精品资讯</text>
+      </view>
+      <text style='color: #000000;font-family: "黑体";font-size:30rpx;margin-left: 10rpx;' bindtap='onToNews'>更多...</text>
+
+    </view>
+    <view style='display: flex;flex-direction:column;justify-content:start;margin-top: 15rpx;'>
+      <view class='fenge-content'></view>
+    </view>
+  </view>
+
+  <view style="display: flex;flex-direction:column;">
+
+    <block wx:for="{{newsList}}" wx:key="id">
+      <view wx:if='{{index}}' style='display: flex;flex-direction:column;justify-content:start;margin-left:20rpx;margin-right: 20rpx;'>
+        <view class='fenge-content'></view>
+      </view>
+      <view class='new-container'>
+        <image src='{{item.src}}' style='width:200rpx;height:140rpx;border-radius:10rpx;'></image>
+        <view class='new-item'>
+          <text style='font-size:28rpx;'>{{item.title}}</text>
+          <view style='width:100%;display:flex;flex-direction:row;justify-content:flex-end;'>
+            <text style='color:gray;font-size:24rpx;'>{{item.date}}</text>
+          </view>
+
+        </view>
+
+      </view>
+
+
+    </block>
+  </view>
+
+  <pop-reward showModal="{{showModal}}" popIndex="{{popIndex}}" mUserinfo='{{mUserinfo}}' />
+
+</view>

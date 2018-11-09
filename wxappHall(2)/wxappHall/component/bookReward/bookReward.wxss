@@ -1,0 +1,157 @@
+/* component/bookReward/bookReward.wxss */
+
+.activity-hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 0.7;
+}
+
+.right-top {
+  position: fixed;
+  right: 82rpx;
+  top: 10rpx;
+  z-index: 10;
+}
+
+.reward-cutdown {
+  width: 72rpx;
+  height: 74rpx;
+  position: absolute;
+  background: url("http://ju.cdn.giantfun.cn/yueEarn/story/img/control/jiang.png");
+  background-size: 100%;
+}
+
+.tip {
+  width: 184rpx;
+  height: 47rpx;
+  position: absolute;
+  right: 0rpx;
+  background: url("http://ju.cdn.giantfun.cn/yueEarn/story/img/control/duihuakuang.png");
+  background-size: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  position: absolute;
+  width: 65rpx;
+  height: 65rpx;
+  opacity: 0.7;
+  top: 8rpx;
+  left: 10rpx;
+}
+
+.pop-reward {
+  left: 0;
+  right: 0;
+  bottom: 50vh;
+  /* top: 0;
+  bottom: 0; */
+  margin: auto;
+  display: flex;
+  position: fixed;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.pop-container {
+  width: 656rpx;
+  height: 656rpx;
+  position: absolute;
+  /* animation-name: myfirst; *//* animation-duration: 3s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards; *//* animation-play-state:paused; */
+}
+
+.pop-bg {
+  width: 656rpx;
+  height: 656rpx;
+  background: url("http://ju.cdn.giantfun.cn/yueEarn/story/img/control/sanguang.png");
+  background-size: 100%;
+  animation-name: myTwo;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  position: absolute;
+}
+
+@keyframes myfirst {
+  0% {
+    transform: scale(0.1, 0.1);
+  }
+
+  20% {
+    transform: scale(1, 1);
+  }
+
+  60% {
+    transform: scale(1, 1);
+  }
+
+  80% {
+    transform: scale(0.2, 0.2);
+  }
+
+  99% {
+    transform: scale(0.2, 0.2);
+  }
+
+  100% {
+    transform: scale(0, 0);
+  }
+}
+
+@keyframes myTwo {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.pop-content {
+  width: 656rpx;
+  height: 656rpx;
+  background: url("http://ju.cdn.giantfun.cn/yueEarn/story/img/control/zhuanquan.png");
+  background-size: 100%;
+  position: absolute;
+}
+
+.jinbi-view {
+  width: 960rpx;
+  height: 620rpx;
+  position: absolute;
+}
+
+.value-view {
+  left: 0;
+  right: 0;
+  bottom: 50vh;
+  margin: auto;
+  display: flex;
+  position: fixed;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.value-bg{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 200rpx;
+  border-radius: 10rpx;
+  /* background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 5px  #aaaaaa; */
+}

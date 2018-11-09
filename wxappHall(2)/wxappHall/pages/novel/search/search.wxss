@@ -1,0 +1,81 @@
+/* pages/novel/search/search.wxss */
+@import "../chapter/chapter.wxss";
+
+page {
+  background: #f3f3f3;
+}
+
+.mtop-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  height: 10vh;
+}
+
+.search-bg {
+  background: #eaeaea;
+  margin: 20rpx 0rpx 20rpx 0rpx;
+  border-radius: 10rpx;
+}
+
+.search-input {
+  width: 50vw;
+  height: 40rpx;
+  margin: 5rpx;
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.search-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100rpx;
+  height: 55rpx;
+  border-radius: 10rpx;
+  background: #ee1818;
+  justify-content: space-around;
+  box-shadow: 0 1px 2px #ce4031;
+}
+
+.search-btn-text {
+  color: white;
+  font-size: 30rpx;
+}
+
+.search-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 10rpx 10rpx 10rpx 10rpx;
+}
+
+.mcontent-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 87vh;
+  width: 100%;
+}
+
+.mbrief-view{
+   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-radius: 5px;box-shadow: 0 2px 5px  #aaaaaa;
+}
+
+.item-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10rpx;
+  width: 100%;
+}

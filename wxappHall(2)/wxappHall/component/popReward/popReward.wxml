@@ -1,0 +1,157 @@
+<!--component/popReward/popReward.wxml-->
+<view wx:if="{{showModal}}" class="modal-mask" catchtouchmove="preventTouchMove">
+  <view class='pop-view-bg' style='justify-content: {{popIndex==5 ? "flex-start" : "center"}}'>
+    <block wx:if='{{popIndex==1}}'>
+      <button class='share-btn' open-type="getUserInfo" bindgetuserinfo="getUserInfo" animation="{{animationData}}">
+        <view class='.sign-pre-reward'>
+          <view style='height:0rpx;'>
+            <image src='../../img/bighongbao.png' style='width:489rpx;height:704rpx'></image>
+          </view>
+          <view class='sign-pre-reward' style='width:489rpx;height:704rpx;justify-content: center'>
+            <text style='color:yellow;font-size:36rpx;'>恭喜你获得了</text>
+            <text style='color:yellow;font-size:44rpx;'>一个红包</text>
+          </view>
+        </view>
+      </button>
+    </block>
+    <block wx:elif='{{popIndex == 2 || popIndex== 3}}'>
+      <view wx:if='{{popIndex == 2}}' class='sign-before' animation="{{animationData}}">
+        <image bindtap='hideModal' src='../../img/guanbi_button.png' style='width:41rpx;height:40rpx;margin-left:440rpx'></image>
+        <view style='height:280rpx;'></view>
+        <view class='mid-reward-view'>
+          <text style='color:#ffea00;font-size:50rpx;font-weight:bold;'>恭喜您获得现金红包</text>
+          <text style='color:#ffea00;font-size:46rpx;font-weight:bold;'>￥{{loginRedpacket}}元</text>
+          <view></view>
+        </view>
+        <view class='fenge-content'></view>
+
+        <view style='display:flex;flex-direction:row;height:60rpx;justify-content: center;align-items:center;'>
+          <text style='color:white;font-size:32rpx;'>可直接发送至您的微信零钱账户</text>
+        </view>
+        <view style='height:80rpx;'></view>
+        <view class='bottom-btn-view'>
+          <text style='color:white;font-size:32rpx;'>验证手机获取现金！</text>
+          <view style='height:14rpx;'></view>
+          <button class='share-btn' open-type="getPhoneNumber" bindgetphonenumber="bindgetphonenumber">
+            <view class='bottom-btn' hover-class="activity-hover">
+              <text style='color:red;font-size:45rpx;'>验证手机</text>
+            </view>
+          </button>
+        </view>
+
+      </view>
+      <view wx:elif='{{popIndex == 3}}' class='sign-after' animation="{{animationData}}">
+        <view style='height:60rpx;'></view>
+        <image bindtap='hideModal' src='../../img/guanbi_button.png' style='width:41rpx;height:40rpx;margin-left:500rpx;'></image>
+        <view style='height:220rpx;'></view>
+        <view class='mid-reward-view' style='height:280rpx;'>
+          <text style='color:#ffea00;font-size:50rpx;font-weight:bold;'>恭喜您获得现金红包</text>
+          <text style='color:#ffea00;font-size:46rpx;font-weight:bold;'>￥{{loginRedpacket}}元</text>
+
+          <view></view>
+        </view>
+        <view class='fenge-content'></view>
+
+        <view style='display:flex;flex-direction:row;height:60rpx;justify-content: center;align-items:center;'>
+          <text style='color:white;font-size:32rpx;'>已发送至您的微信零钱账户</text>
+        </view>
+        <view style='height:80rpx;'></view>
+
+        <view class='bottom-btn-view'>
+          <text style='color:white;font-size:32rpx;'>完成每日签到可以获得更多现金</text>
+          <view style='height:14rpx;'></view>
+          <button class='share-btn' bindtap='gotoSign'>
+            <!-- immediatelyCash -->
+            <view class='bottom-btn' hover-class="activity-hover">
+              <text style='color:red;font-size:45rpx;'>签到赚钱</text>
+            </view>
+          </button>
+        </view>
+
+
+      </view>
+
+    </block>
+
+    <block wx:if='{{popIndex == 4}}'>
+      <view class='reward-view' style='height: 760rpx;' animation="{{animationData}}">
+        <image bindtap='hideModal' src='../../img/guanbi_button.png' style='width:41rpx;height:40rpx;margin-left:540rpx'></image>
+        <view style='height:20rpx;'></view>
+        <view class='reward-top-view'>
+          <text style='color:#fff;font-size:44rpx;'>申请提现成功</text>
+        </view>
+        <view class='reward-bottom-view' style='height: 500rpx;'>
+          <view style='height:30rpx;'></view>
+          <text style='color:black;font-size:32rpx;'>提现审核将在2个工作日内审核，</text>
+          <view style='height:10rpx;'></view>
+          <text style='color:black;font-size:32rpx;'>可前往我的红包了解提现进度。</text>
+          <view style='height:100rpx;'></view>
+          <text style='color:red;font-size:32rpx;'>完成每日签到可以获得更多现金！</text>
+          <view style='height:100rpx;'></view>
+          <view class='reward-bottom-btn' hover-class="activity-hover" bindtap="gotoSign">
+            <text style='color:white;font-size:32rpx;'>签到赚钱</text>
+          </view>
+        </view>
+      </view>
+
+    </block>
+
+    <block wx:if='{{popIndex == 5}}'>
+      <view class='login-pop-view' animation="{{animationData}}">
+        <view style='height:200rpx;'></view>
+        <image bindtap='hideModal' src='../../img/guanbi_button.png' style='width:41rpx;height:40rpx;margin-left:560rpx'></image>
+        <view style='height:100rpx;'></view>
+        <view style='height:120rpx;'>
+          <text style='color:#ffea00;font-size:44rpx;'>我的资产</text>
+        </view>
+
+        <view class='wealth-content-view'>
+          <image src='../../img/wealth/zichan_icon.png' style='width:96rpx;height:109rpx;'></image>
+          <view style='width:15rpx;'></view>
+          <view class='wealth-text-view'>
+            <text style='color:black;font-size:40rpx;'>总资产：{{mUserinfo.dream_value}}</text>
+            <text style='color:black;font-size:26rpx;'>（价值）</text>
+          </view>
+        </view>
+         <view style='height:20rpx;'></view>
+
+        <view style='display:flex;flex-direction:row'>
+          <text style='font-size:33rpx'>在朋友中的资产排名：</text>
+          <text style='color:red;font-size:33rpx'>第二名</text>
+        </view>
+        <view style='height:30px;'></view>
+
+
+        <view class='detail-money-view'>
+          <image src='../../img/story/coin.png' style='width:42rpx;height:42rpx;'></image>
+          <view style='width:10rpx;'></view>
+          <text style='color:black;font-size:30rpx;'>我的零钱</text>
+          <view style='width:10rpx;'></view>
+          <view style='width:10rpx;'></view>
+          <text style='color:black;font-size:30rpx;'>{{mUserinfo.red_packet}}元</text>
+        </view>
+        <view style='height:20rpx;'></view>
+        <view class='detail-money-view'>
+          <image src='../../img/wealth/yuedubi_icon.png' style='width:42rpx;height:42rpx;'></image>
+          <view style='width:10rpx;'></view>
+          <text style='color:black;font-size:33rpx;'>我的金币</text>
+          <view style='width:10rpx;'></view>
+          <view style='width:10rpx;'></view>
+          <text style='color:black;font-size:33rpx;'>{{mUserinfo.gold_coins}}</text>
+        </view>
+
+        <view style='height:40rpx;'></view>
+
+        <button open-type='share' class='share-btn' bindtap='onTapShare'>
+          <view class='reward-bottom-btn' hover-class="activity-hover" style='width:340rpx;'>
+            <text style='color:white;font-size:32rpx;'>炫耀我的财产</text>
+          </view>
+        </button>
+
+
+
+      </view>
+    </block>
+
+  </view>
+</view>

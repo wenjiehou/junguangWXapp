@@ -1,0 +1,9 @@
+<!--pages/test/test01/test01.wxml-->
+<view class="circleProgress_wrapper">
+        <view class="wrapper right">
+            <view class="circleProgress rightcircle"></view>
+        </view>
+        <view class="wrapper eft">
+            <view class="circleProgress leftcircle"></view>
+        </view>
+ </view>

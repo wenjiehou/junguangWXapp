@@ -1,0 +1,48 @@
+<!--pages/novel/search/search.wxml-->
+<view class='mtop-view'>
+  <view class='search-bg'>
+    <input confirm-type='search' class='search-input' placeholder='输入关键字' bindinput="bindKeyInput" bindconfirm='onSearch'></input>
+  </view>
+  <view style='width:20rpx;'></view>
+  <view class='search-btn' hover-class="activity-hover" bindtap='onSearch'>
+    <text class='search-btn-text'>搜索</text>
+  </view>
+</view>
+
+<view style='height:1vh;'></view>
+
+<view class='search-content'>
+  <scroll-view scroll-y='true' class='mcontent-view'>
+    <block wx:for='{{books}}' wx:key='book_id' wx:for-item='book' wx:for-index='idx'>
+      <view wx:if='{{idx}}' style='height:20rpx;'></view>
+      <view class='mbrief-view' data-bookid='{{book.book_id}}' hover-class="activity-hover" bindtap='onBookTap'>
+        <view class='item-content'>
+          <image src='{{book.book_list_img}}' style='width:153rpx;height:204rpx;'></image>
+          <view class='brief-title-view' style='width: 500rpx;'>
+            <view class='brief-head-view'>
+              <text style='color:black;font-size:28rpx;'>{{book.title}}</text>
+              <text style='color:black;font-size:22rpx;'>{{"作者："+book.author}}</text>
+            </view>
+
+            <view class='brief-desc-view'>
+              <text class='brief-desc-text'>{{book.description}}</text>
+            </view>
+            <view class='breif-tab-view' style='justify-content:flex-end;'>
+              <block wx:for='{{book.book_tag}}'>
+                <view wx:if='{{index}}' style='width:10rpx;'></view>
+                <view class='tab-text-view'>
+                  <view style='width:5rpx;'></view>
+                  <text style='color:gray;font-size:24rpx;'>{{item}}</text>
+                  <view style='width:5rpx;'></view>
+                </view>
+              </block>
+            </view>
+          </view>
+
+        </view>
+
+      </view>
+    </block>
+
+  </scroll-view>
+</view>

@@ -1,0 +1,15 @@
+<!--common/component/loginNote/loginNote.wxml-->
+
+<view wx:if="{{showModal}}" class="modal-mask" catchtouchmove="preventTouchMove">
+<view class='pop-view-bg'>
+   <view class='pop-bg'>
+   <image bindtap='hideModal' src='../../../img/common/guanbi_button.png' style='width:80rpx;height:80rpx;margin-left:500rpx'></image>
+     <button class='share-btn' open-type='getUserInfo' bindgetuserinfo="getUserInfo">
+          <view class='reward-bottom-btn' hover-class="activity-hover" style='width:340rpx;'>
+            <text style='color:white;font-size:32rpx;'>登陆</text>
+          </view>
+        </button>
+   </view>
+</view>
+</view>
+

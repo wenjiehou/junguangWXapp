@@ -1,0 +1,123 @@
+/* component/popReward/popReward.wxss */
+@import "../../wxssCommon/reward.wxss";
+
+.modal-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9000;
+}
+
+.pop-view-bg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.share-btn {
+  background: none !important;
+}
+
+.share-btn::after {
+  border: none;
+}
+
+.sign-pre-reward{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.sign-before {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: url("http://ju.cdn.giantfun.cn/yueEarn/bangdinghongbao.png");
+  background-size: 100%;
+  height: 899rpx;
+  width: 701rpx;
+}
+
+.sign-after {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: url("http://ju.cdn.giantfun.cn/yueEarn/tixianhongbao.png");
+  background-size: 100%;
+  height: 943rpx;
+  width: 693rpx;
+}
+
+.mid-reward-view{
+  width: 100%;
+  height: 240rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.fenge-content{
+  width:500rpx;height:2rpx;background: #000;opacity:0.5;
+}
+
+.bottom-btn {
+  width: 400rpx;
+  height: 80rpx;
+  background: #ffea00;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 40rpx;
+}
+
+.bottom-btn-view{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-pop-view{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: url("http://ju.cdn.giantfun.cn/yueEarn/diercidenglu.png");
+  background-size: 100%;
+  width: 750rpx;
+  height:966rpx;
+
+}
+
+.wealth-content-view{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.wealth-text-view{
+   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail-money-view{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+

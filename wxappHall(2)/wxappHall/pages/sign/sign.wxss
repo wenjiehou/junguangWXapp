@@ -1,0 +1,268 @@
+/* pages/sign.wxss */
+@import  "../../wxssCommon/reward.wxss" ;
+
+.bc_red {background: #ce4031;width:100%; height: 400rpx;
+ display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;}
+
+
+.sign-view{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-fenge{
+  width:50rpx;height:4rpx;background: #fff;opacity:0.8
+}
+
+
+.sign-yuandian{
+  background: #fff;width:15rpx; height: 15rpx;border-radius: 50%;display: flex;flex-direction: column;justify-content: center;align-items: center;
+}
+
+.sign-img{
+  width:76rpx;height:76rpx
+}
+
+.sign-text{
+  color:red;font-size:26rpx;font-family:SimHei;
+}
+
+.treasure-view{
+  display:flex;flex-direction: column;align-items: center;width: 400rpx;height: 70rpx;border-radius: 45rpx;background: #ffd40a;justify-content: space-around;box-shadow: 0 1px 8px  #733129;
+}
+
+.top-fenge{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.fenge-huang{
+  width: 300rpx;
+  background: #fcdb00;
+  height: 2rpx;
+}
+
+.game-list{
+  display: flex;flex-direction:row;justify-content:space-between;
+}
+
+.mid-left-bottom-view{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-view{
+   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 80rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+}
+
+
+/**/
+
+.show-btn {
+  margin-top: 100rpx;
+  color: #2c2;
+}
+
+
+
+.top-view {
+  width: 100%;
+  height: 64%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.7);
+}
+
+.bt-view{
+  width: 100%;
+  /* height: 36%; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  margin-top: 20rpx;
+}
+
+.bottom-view {
+  width: 100%;
+  height: 36%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+}
+
+.tm-view{
+   width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.mm-view {
+  width: 100%;
+  height: 150rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+
+.cancel-view {
+  width: 100%;
+  height: 100rpx;
+  background: #f00;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.row-view-gap{
+  width: 20rpx;
+}
+
+.column-view-gap{
+  height: 20rpx;
+}
+
+.mfenge-content{
+  width:35%;height:2rpx;background: #888;opacity:0.5
+}
+
+.weixin-img-view{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 50%;
+}
+
+.new-reward-view{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+ 
+}
+
+.new-reward-top{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 110rpx;
+
+}
+
+.new-reward-mid{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 777rpx;
+  height: 625rpx;
+  background: url("http://ju.cdn.giantfun.cn/yueEarn/xinrenhongbao2.png");
+  background-size: 100%;
+}
+
+.new-text-mid{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 60rpx;
+}
+
+
+
+/* .modal-dialog {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  z-index: 9999;
+  background: #f9f9f9;
+} */
+
+/* .modal-title {
+  padding-top: 50rpx;
+  font-size: 36rpx;
+  color: #030303;
+  text-align: center;
+}
+
+.modal-content {
+  padding: 50rpx 32rpx;
+}
+
+.modal-input {
+  display: flex;
+  background: #fff;
+  border: 2rpx solid #ddd;
+  border-radius: 4rpx;
+  font-size: 28rpx;
+}
+
+
+.input {
+  width: 100%;
+  height: 82rpx;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  color: #333;
+}
+
+input-holder {
+  color: #666;
+  font-size: 28rpx;
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  height: 86rpx;
+  border-top: 1px solid #dedede;
+  font-size: 34rpx;
+  line-height: 86rpx;
+}
+
+.btn-cancel {
+  width: 50%;
+  color: #666;
+  text-align: center;
+  border-right: 1px solid #dedede;
+}
+
+.btn-confirm {
+  width: 50%;
+  color: #ec5300;
+  text-align: center;
+} */
+
+

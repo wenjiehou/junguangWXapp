@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "首页",
+  "usingComponents": {
+    "gift-list": "../../component/getGift/getGift",
+    "pop-reward":"../../component/popReward/popReward"
+  }
+}

@@ -1,0 +1,45 @@
+<!--component/taskList/taskList.wxml-->
+<view style='margin-bottom:30rpx'>
+  <view class='list-view-container'>
+    <view class='list-bg' style='height: {{80+listData.length*116+(listData.length-1)*2+110*openNum}}rpx;'></view>
+  </view>
+  <view class='list-container'>
+    <view style='display:flex;flex-direction:row;height:80rpx;margin-left:26rpx;align-items: center;'>
+      <image src='{{icon}}' style='width:42rpx;height:43rpx'></image>
+      <text style='color:black;font-size:30rpx; font-family: "SimHei";margin-left:10rpx;font-weight: bolder;'>{{title}}</text>
+    </view>
+    <view class='fenge-view'>
+      <view class='fenge-content'></view>
+    </view>
+    <block wx:for="{{listData}}" wx:key="taskId">
+      <view wx:if="{{index}}" class='fenge-view-short'>
+        <view class='fenge-content'></view>
+      </view>
+      <view style='margin-left:20rpx;margin-right:20rpx;margin-top:5rpx;margin-bottom:5rpx;border-radius: 5px;' hover-class="activity-hover" bindtap='_onClickItem' data-index='{{index}}'>
+        <view style='display:flex;flex-direction: row;align-items: center;justify-content:space-between;height:106rpx;margin-left:20rpx;margin-right:20rpx;'>
+          <view style='display:flex;flex-direction:row;height:70rpx;align-items: center;'>
+            <icon wx:if="{{item.task_complete}}" type="success" size="16" color="red" />
+            <view wx:else style=' width: 32rpx;height: 32rpx;border-radius: 50%;background: gray'></view>
+            <text style='color:black;font-size:28rpx; font-family: "SimHei";margin-left:8rpx'>{{item.task_name}}</text>
+          </view>
+          <view style='display:flex;flex-direction: row;align-items: center;justify-content:space-between;height:100%;'>
+            <text style='color:#ffc600;font-size:28rpx; font-family: "Microsoft YaHei";'>+{{item.task_value}}</text>
+            <image src='../../img/task/jifen_icon.png' style='width:41rpx;height:43rpx;margin-left:20rpx'></image>
+            <image src='../../img/task/xiala_button.png' style='width:18rpx;height:9rpx;margin-left:20rpx;transform: scale(1,{{listDataState[index]?-1:1}});'></image>
+          </view>
+        </view>
+      </view>
+      <!-- <block wx:if="{{listDataState[index]}}"> -->
+      <view class='item-view' style='display:{{listDataState[index]?flex:"none"}}'>
+        <text style='color:gray;font-size:26rpx; font-family: "SimHei";width:450rpx'>{{item.task_description}}</text>
+        <view hover-class="activity-hover" class='item-red-btn' bindtap='_onTap' data-index='{{index}}'>
+          <text style='color:white;font-size:30rpx; font-family: "SimHei";'>{{item.task_page_button_info}}</text>
+        </view>
+      </view>
+      <!-- </block> -->
+
+
+    </block>
+  </view>
+
+</view>

@@ -1,0 +1,115 @@
+<!--pages/hot/hot.wxml-->
+<swiper class='swiper-style' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicator_color}}" indicator-active-color="{{indicator_active_color}}" circular="{{circular}}">
+  <block wx:for="{{imgUrls}}" wx:key="id">
+    <swiper-item>
+      <image src="{{item.url}}" class="slide-image" />
+    </swiper-item>
+  </block>
+</swiper>
+<view class='mid-view'>
+  <view class='mid-left-view'>
+     <view class='mid-left-top'>
+          <text style='font-size:26rpx;'>您在本站已累计阅读</text>
+          <view style='width:5rpx;'></view>
+          <text style='color:red;font-size:26rpx;'>{{mUserinfo.read_book.read_total_time}}</text>
+          <view style='width:5rpx;'></view>
+          <text style='font-size:26rpx;'>分钟</text>
+        </view>
+    <view style='height:10rpx;'></view>
+    <view class='mid-left-bottom-view'>
+      <text style='color:black;font-size:30rpx;'>共赚取</text>
+      <view style='width:10rpx;'></view>
+      <text style='color:red;font-size:30rpx; '>{{mUserinfo.read_book.rewards_gold_coins}}</text>
+      <view style='width:10rpx;'></view>
+      <image src='../../img/story/coin.png' style='width:43rpx;height:44rpx;'></image>
+    </view>
+  </view>
+  <view hover-class="activity-hover" class='item-red-btn' bindtap='gotoShelf'>
+    <text style='color:white;font-size:30rpx; '>我的书架</text>
+  </view>
+  <view hover-class="activity-hover" class='item-red-btn' bindtap='gotoAllNovel'>
+    <text style='color:white;font-size:30rpx;'>全部小说</text>
+  </view>
+</view>
+<view class='boder-fenge'></view>
+
+<view class='search-view'>
+  <view class='mid-left-bottom-view'>
+    <image src='../../img/icon_hotgame.png' style='width:37rpx;height:38rpx;'></image>
+    <text style='color: #000000;font-size:30rpx;margin-left: 10rpx;font-weight: 700;'>今日推荐</text>
+  </view>
+  <view hover-class="activity-hover" bindtap='toSearch'>
+    <image src='../../img/story/sousuo_button.png' style='width:39rpx;height:39rpx;'></image>
+  </view>
+</view>
+
+<view style='margin-left:30rpx;margin-right:30rpx;'>
+  <view class='fenge-content'></view>
+</view>
+<view class='brief-view' hover-class="activity-hover" data-bookid='{{book_recommend.book_id}}' bindtap='onBookTap'>
+  <image src='{{book_recommend.book_recommend_img}}' style='width:153rpx;height:204rpx;'></image>
+  <view class='brief-title-view'>
+    <view class='brief-head-view'>
+      <text style='color:black;font-size:30rpx;'>{{book_recommend.title}}</text>
+      <text style='color:black;font-size:22rpx;'>{{"作者："+book_recommend.author}}</text>
+    </view>
+
+    <view class='brief-desc-view'>
+      <text class='brief-desc-text'>{{book_recommend.description}}</text>
+    </view>
+    <view class='breif-tab-view'>
+      <block wx:for='{{book_recommend.book_tag}}'>
+        <view wx:if='{{index}}' style='width:10rpx;'></view>
+        <view class='tab-text-view'>
+          <view style='width:5rpx;'></view>
+          <text style='color:gray;font-size:24rpx;'>{{item}}</text>
+           <view style='width:5rpx;'></view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+
+<view style='margin-left:30rpx;margin-right:30rpx;'>
+  <view class='fenge-content'></view>
+</view>
+
+<!-- 游戏列表 -->
+
+<view style="display: flex;flex-direction:column;">
+
+  <block wx:for="{{book_list}}" wx:for-item="novel_id">
+    <view style='height:6rpx;'></view>
+    <view wx:if='{{index%3==0}}' class='game-list' style='margin-top: 20rpx;margin-left: 40rpx;margin-right: 40rpx;'>
+
+      <block wx:for="{{[book_list[index],book_list[index+1],book_list[index+2]]}}">
+        <view style='display: flex;flex-direction: column;align-items: center;'>
+          <view hover-class="activity-hover" style='flex-direction: column;border-radius: 10px;display: flex;justify-content:space-around;align-items: center;' data-bookid='{{item.book_id}}' bindtap='onBookTap'>
+            <image src='{{item.book_list_img}}' style='width:185rpx;height:256rpx'></image>
+          </view>
+          <text style='color:black;font-size:24rpx;'>{{item.title}}</text>
+        </view>
+      </block>
+    </view>
+  </block>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<view style='height:200rpx;'></view>
+<!-- <view hover-class="activity-hover" class='item-red-btn' bindtap='onTap'>
+  <text style='color:white;font-size:30rpx; font-family: "SimHei";'>测试付费</text>
+</view> -->

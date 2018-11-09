@@ -1,0 +1,134 @@
+/* pages/home/home.wxss */
+.section {
+  margin-top: 10rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+}
+
+.flex-wrp {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.flex-wrpitem {
+  display: flex;
+  }
+
+.activity-img {
+  width: 146rpx;
+  height: 159rpx;
+}
+
+
+.playerAct-view {
+  height: 116rpx;
+  width: 0rpx;
+  display: flex;
+  display: -webkit-box;
+  flex-direction: column;
+
+}
+
+.playerAct-Item {
+  width: 0rpx;
+  height: 116rpx;
+}
+
+
+.playerAct-nametf {
+  color: #000000;
+  font-family: "黑体";
+  font-size:30rpx;
+  margin-left: 120rpx;
+}
+
+.playerAct-nametflin {
+  color: #ff0000;
+  font-family: "黑体";
+  font-size:26rpx;
+  margin-left: 120rpx;
+  
+  
+}
+
+.playerAct-occurtf{
+  color: #888888;font-family: "黑体";font-size:24rpx;margin-left: 0rpx;margin-top: 45rpx;
+}
+
+.game-list{
+  display: flex;flex-direction:row;justify-content:space-between;margin-top: 20rpx;margin-left: 20rpx;margin-right: 20rpx;
+}
+
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.fenge-content{
+  width:100%;height:2rpx;background: #ccc;opacity:0.5
+}
+
+.wealth-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+ width: 100%;
+  height:240rpx;
+  background: #ce4031;
+}
+
+.wealth-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+   width: 96%; 
+  /* margin-left: 5rpx; */
+  margin-right: 5rpx;
+  height:200rpx;
+}
+
+.v-fenge{
+  height: 160rpx;
+  width: 2rpx;
+  background: #555;
+  opacity: 0.5;
+  
+}
+
+
+
+.wealth-item{
+  display: flex;
+  flex-direction: column;
+  width: 240rpx;
+  height: 180rpx;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.new-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10rpx 25rpx 10rpx 25rpx;
+  align-items: center;
+
+}
+
+.new-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 480rpx;
+  height: 160rpx;
+
+}
+
+
+

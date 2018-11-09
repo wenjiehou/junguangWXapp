@@ -1,0 +1,13 @@
+<!--pages/personal/personal.wxml-->
+<view class="bc_red">
+  <!-- 这里展示登录 -->
+  <view class="userinfo">
+    <button size='mini' wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+      <text style='color:black;font-size:30rpx;'>登录</text>
+    </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text style='color:white;font-size:30rpx;'>ID 1245688</text>
+    </block>
+  </view> 
+</view>

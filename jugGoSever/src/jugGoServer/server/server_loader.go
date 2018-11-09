@@ -1,6 +1,8 @@
 package server
 
 import (
+	"fmt"
+	"jugGoServer/net/httpServer"
 	"strconv"
 	"time"
 )
@@ -13,6 +15,7 @@ func Start() {
 
 	err = initDb() //连接数据库
 	if err != nil {
+		fmt.Println("baocuole!")
 		panic(err)
 	}
 
@@ -22,4 +25,6 @@ func Start() {
 
 	//初始化定时任务 todo
 	InitCrontab()
+
+	go httpServer.StartHttp(runTimeConfig.GMHttp.Ip, runTimeConfig.GMHttp.Port)
 }

@@ -1,0 +1,4 @@
+<!--pages/home/home.wxml-->
+
+<login-note showModal="{{true}}"></login-note>
+<text>pages/home/home.wxml</text>

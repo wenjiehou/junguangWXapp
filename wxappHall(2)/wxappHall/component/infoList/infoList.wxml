@@ -1,0 +1,59 @@
+<!--component/infoList/infoList.wxml-->
+<!--component/comList/comList.wxml-->
+<view class='view-container'>
+  <view class='list-bg'>
+    <view class='list-content'>
+      <block wx:for='{{listData}}'>
+        <view hover-class="activity-hover" class='content-view' bindtap='onTapItem' data-index='{{index}}'>
+          <view wx:if='{{index}}' class='fenge-content'></view>
+          <view wx:if='{{!listDataState[index]}}' class='single-close-view'>
+            <view class='close-left-view'>
+              <view wx:if='{{item.status==0}}' class='red-point'></view>
+              <view wx:else class='red-point' style='opacity:0'></view>
+              <view style='width:10rpx;'></view>
+              <text style='color:black;font-size:28rpx;'>{{item.title}}</text>
+              <view style='width:20rpx;'></view>
+              <text style='color:gray;font-size:28rpx;'>{{item.date}}</text>
+            </view>
+
+            <!-- <view class='item-red-btn'>
+            <text style='color:white;font-size:24rpx;'>删除</text>
+            </view>  -->
+          </view>
+
+
+
+          <view wx:else class='single-open-view'>
+            <image src='{{item.icon_url}}' style='width:95rpx;height:95rpx;'></image>
+            <view class='open-right-view'>
+              <view class='open-right-top'>
+                <view class='close-left-view'>
+                  <text style='color:black;font-size:24rpx;'>{{item.title}}</text>
+                  <view style='width:20rpx;'></view>
+                  <text style='color:gray;font-size:24rpx;'>{{item.date}}</text>
+                </view>
+                <view class='item-red-btn' catchtap='catchtapDeleteBtn' data-index='{{index}}'>
+                  <text style='color:white;font-size:24rpx;'>删除</text>
+                </view>
+              </view>
+              <view class='open-right-bottom'>
+               <text style='color:gray;font-size:22rpx;'>{{item.content}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+
+      </block>
+    </view>
+
+
+
+
+
+
+
+  </view>
+</view>
+
+<view style='height:30rpx;'></view>

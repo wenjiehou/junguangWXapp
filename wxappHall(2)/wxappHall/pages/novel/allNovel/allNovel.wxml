@@ -1,0 +1,94 @@
+<!--pages/novel/allNovel/allNovel.wxml-->
+<swiper style='height: 279rpx;' class='swiper-style' indicator-dots="{{true}}" autoplay="{{true}}" interval="{{4000}}" duration="{{800}}" indicator-color="{{'gray'}}" indicator-active-color="{{'white'}}" circular="{{true}}">
+  <block wx:for="{{listData}}" wx:key="id">
+    <swiper-item>
+      <image src="{{item.url}}" class="slide-image" />
+    </swiper-item>
+  </block>
+</swiper>
+
+
+<view class='mid-container'>
+  <view style='height:10rpx;'></view>
+  <view class='mid-view'>
+    <view class='mid-inner-view'>
+      <view class='mid-left-view'>
+        <view class='mid-left-top'>
+          <text style='font-size:26rpx;'>您在本站已累计阅读</text>
+          <view style='width:5rpx;'></view>
+          <text style='color:red;font-size:26rpx;'>{{mUserinfo.read_book.read_total_time}}</text>
+          <view style='width:5rpx;'></view>
+          <text style='font-size:26rpx;'>分钟</text>
+        </view>
+        <view style='height:15rpx;'></view>
+        <view class='mid-left-top'>
+          <text style='font-size:30rpx;'>共赚取</text>
+          <view style='width:8rpx;'></view>
+          <text style='color:red;font-size:30rpx;'>{{mUserinfo.read_book.rewards_gold_coins}}</text>
+          <view style='width:8rpx;'></view>
+          <image src='../../../img/story/coin.png' style='width:42rpx;height:42rpx;'></image>
+        </view>
+      </view>
+      <view hover-class="activity-hover" class='comm-btn' bindtap='gotoShelf'>
+        <text style='color:white;font-size:28rpx;'>我的书架</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view style='height:20rpx;'></view>
+
+<view class='classify-view'>
+  <block wx:for='{{classifyList}}' wx:key='id'>
+    <view class='classify-item' hover-class="activity-hover">
+      <image src="{{item.url}}" class='classify-img'></image>
+      <text class='classify-text'>{{item.title}}</text>
+      <view class='red-underline'></view>
+    </view>
+  </block>
+</view>
+<view style='height:10rpx;'></view>
+<view class='h-fenge'></view>
+
+<view class='subtype-view'>
+  <block wx:for='{{subList}}' wx:key='id'>
+    <view wx:if='{{index%4==0}}' style='height:10rpx;'></view>
+    <view class='subtype-content' wx:if='{{index%4 == 0}}'>
+      <block wx:for='{{[subList[index],subList[index+1],subList[index+2],subList[index+3]]}}'>
+        <view class='subtype-item' hover-class="activity-hover">
+          <image src='{{item.url}}' style='width:148rpx;height:75rpx;'></image>
+          <text class='classify-text'>{{item.title}}</text>
+        </view>
+      </block>
+    </view>
+
+  </block>
+</view>
+<view style='height:10rpx;'></view>
+<view class='gray-h-fenge'></view>
+<view style='height:10rpx;'></view>
+
+<view class='competitive-view'>
+  <image src='../../../img/icon_hotgame.png' style='width:37rpx;height:38rpx;'></image>
+  <text style='color: #000000;font-size:30rpx;margin-left: 10rpx;font-weight: 700;'>精品推荐</text>
+</view>
+
+<view class='h-fenge'></view>
+
+<view style="display: flex;flex-direction:column;">
+
+  <block wx:for="{{book_list}}" wx:for-item="novel_id">
+    <view style='height:6rpx;'></view>
+    <view wx:if='{{index%3==0}}' class='game-list' style='margin-top: 20rpx;margin-left: 40rpx;margin-right: 40rpx;'>
+
+      <block wx:for="{{[book_list[index],book_list[index+1],book_list[index+2]]}}">
+        <view style='display: flex;flex-direction: column;align-items: center;'>
+          <view hover-class="activity-hover" style='flex-direction: column;border-radius: 10px;display: flex;justify-content:space-around;align-items: center;' data-bookid='{{item.book_id}}' bindtap='onBookTap'>
+            <image src='{{item.book_list_img}}' style='width:185rpx;height:256rpx'></image>
+          </view>
+          <text style='color:black;font-size:24rpx;'>{{item.title}}</text>
+        </view>
+      </block>
+    </view>
+  </block>
+</view>

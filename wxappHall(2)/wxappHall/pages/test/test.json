@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "pop-box": "../../component/popBox/popBox",
+    "book-reward":"../../component/bookReward/bookReward"
+  }
+
+}

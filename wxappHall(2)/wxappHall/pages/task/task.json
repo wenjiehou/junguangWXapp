@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "任务",
+  "usingComponents": {
+    "gift-list": "../../component/getGift/getGift",
+    "task-list":"../../component/taskList/taskList"
+  }
+}

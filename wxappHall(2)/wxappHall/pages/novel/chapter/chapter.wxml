@@ -1,0 +1,430 @@
+<!--pages/novel/chapter/chapter.wxml-->
+<pop-box popModal='{{showPopBox}}' content='{{snatchErrMsg}}' bind:popBoxEvent='popBoxEvent'></pop-box>
+<view class='top-view'>
+
+  <view class='brief-view' data-bookid='{{book.book_id}}'>
+    <image src='{{book.book_recommend_img}}' style='width:153rpx;height:204rpx;'></image>
+    <view class='brief-title-view'>
+      <view class='brief-head-view'>
+        <text style='color:black;font-size:30rpx;'>{{book.title}}</text>
+        <text style='color:black;font-size:22rpx;'>{{"作者："+book.author}}</text>
+      </view>
+
+      <view class='brief-desc-view'>
+        <text class='brief-desc-text'>{{book.description}}</text>
+      </view>
+      <view class='breif-tab-view'>
+        <block wx:for='{{book.book_tag}}'>
+          <view wx:if='{{index}}' style='width:10rpx;'></view>
+          <view class='tab-text-view'>
+            <view style='width:5rpx;'></view>
+            <text style='color:gray;font-size:24rpx;'>{{item}}</text>
+            <view style='width:5rpx;'></view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view style='height:30rpx;'></view>
+  <view class='top-bottom-view'>
+    <view hover-class='activity-hover' bindtap='gotoShelf'>
+      <text style='color:black;font-size:30rpx;'>去书架</text>
+    </view>
+
+    <view class='item-red-btn' hover-class="activity-hover" bindtap='onStartRead'>
+      <text style='color:white;font-size:33rpx;'>开始阅读</text>
+    </view>
+    <view hover-class='activity-hover'>
+      <text style='color:black;font-size:30rpx;'>离线下载</text>
+    </view>
+
+  </view>
+</view>
+
+
+<!-- 这里是中间抢小说那一块 -->
+<view class='mid-snatch-title'>
+  <view class='snatch-title-side'></view>
+  <view class='snatch-title-content'>
+
+    <view style='height:0rpx'>
+      <image src='../../../img/story/yongyouzhe_di.png' style='width:341rpx;height:37rpx;'></image>
+    </view>
+    <view class='snatch-title-text'>
+      <text style='font-size:24rpx;'>本书拥有者：{{snatchInfo.game_owner_nickname}}</text>
+    </view>
+  </view>
+  <view class='snatch-title-side' hover-class='activity-hover'>
+    <image src='../../../img/story/guize.png' style='width:38rpx;height:38rpx;'></image>
+    <view style='width:10rpx;'></view>
+    <text style='font-size:30rpx;color:gray'>规则</text>
+  </view>
+</view>
+<view style='height:10rpx;'></view>
+<view class='mid-snatch'>
+  <view class='snatch-content-top'>
+    <view class='snatch-content-item'>
+      <view class='snatch-item-text'>
+        <text style='font-size:34rpx;color:white'>{{snatchInfo.game_v}}</text>
+        <text style='font-size:22rpx;color:white'>（金币）</text>
+      </view>
+      <text style='font-size:22rpx;color:white'>本书价值</text>
+    </view>
+    <view class='v-segment'></view>
+    <view class='snatch-content-item'>
+      <view class='snatch-item-text'>
+        <text style='font-size:34rpx;color:white'>{{snatchInfo.game_v_hour}}</text>
+        <text style='font-size:22rpx;color:white'>（金币）</text>
+      </view>
+      <text style='font-size:22rpx;color:white'>占领收入/小时</text>
+    </view>
+    <view class='v-segment'></view>
+    <view class='snatch-content-item'>
+      <view class='snatch-item-text'>
+        <text style='font-size:34rpx;color:white'>{{snatchInfo.game_v_total}}</text>
+        <text style='font-size:22rpx;color:white'>（金币）</text>
+      </view>
+      <text style='font-size:22rpx;color:white'>当前累计收益</text>
+    </view>
+  </view>
+  <view class='snatch-content-bottom'>
+    <view class='snatch-bottom-btn' hover-class='activity-hover' bindtap='onTapSnatchBtn'>
+      <text style='font-size:26rpx;color:red;'>抢小说赚钱</text>
+    </view>
+  </view>
+
+
+
+</view>
+<view style='height:10rpx;'></view>
+
+
+<!-- 这里是中间抢小说那一块 -->
+
+<view class='chapter-view' style='height:{{(chapter.length+1)*60}}rpx'>
+  <view class='chapter-title-view'>
+    <view style='width:150rpx;'></view>
+    <text style='color:black;font-size:30rpx;'>章节</text>
+    <view style='width:150rpx;display:flex;flex-direction: row;justify-content: flex-end;'>
+      <text style='color:gray;font-size:24rpx;'>{{(pageIndex)}}/{{pageArray.length}}</text>
+    </view>
+  </view>
+  <block wx:for='{{chapter}}' wx:key='chapter_id'>
+    <view class='mfenge-content'></view>
+    <view class='chapter-title-view' data-chapterid='{{item.chapter_id}}' hover-class="activity-hover" bindtap='onViewPage'>
+      <text style='color:gray;font-size:26rpx;'>{{item.chapter_name}}</text>
+      <image src='../../../img/story/to.png' style='width:16rpx;height:35rpx;'></image>
+    </view>
+  </block>
+</view>
+
+<view style='height:80rpx;'></view>
+
+<view class='page-controller-view'>
+  <view class='ctr-view'>
+    <view class='item-red-btn' style='width:100rpx;height:50rpx;background: #aaa;box-shadow: 0 1px 2px  #aaa;' hover-class="activity-hover" bindtap='toPrePage'>
+      <text style='color:white;font-size:22rpx;'>上一页</text>
+    </view>
+
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{pageArray}}">
+      <view class="picker">
+        <text style='color:gray;font-size:22rpx;'>{{pageArray[index]}}</text>
+      </view>
+    </picker>
+
+    <view class='item-red-btn' style='width:100rpx;height:50rpx;' hover-class="activity-hover" bindtap='toNextPage'>
+      <text style='color:white;font-size:22rpx;'>下一页</text>
+    </view>
+  </view>
+</view>
+
+<view wx:if='{{popMode}}' class='popbg-view' catchtouchmove='onTouchmove'>
+  <image bindtap='hideModal' src='../../../img/guanbi_button.png' style='width:41rpx;height:40rpx;margin-left:520rpx'></image>
+  <view style='height:15rpx;'></view>
+  <view class='pop-content'>
+    <view class='pop-content-title'>
+      <text style='color:white;font-size:38rpx;'>抢小说赚钱</text>
+    </view>
+    <view class='pop-content-brief'>
+      <view class='pop-breif-img'>
+        <image src='{{snatchInfo.img}}' style='width:100%;height:100%'></image>
+      </view>
+      <view class='pop-breif-content'>
+        <view class='pop-breif-item'>
+          <text style='font-size:22rpx;'>{{snatchInfo.title}}</text>
+          <text style='font-size:22rpx;'>作者：{{snatchInfo.author}}</text>
+        </view>
+        <view class='pop-breif-item'>
+          <view class='pop-breif-item-hot'>
+            <text style='font-size:22rpx;'>热度：</text>
+            <block wx:for='{{bookHeat}}'>
+              <block wx:if='{{item==1}}'>
+                <view wx:if='{index}' style='width:5rpx;'></view>
+                <image src='../../../img/story/hongxin.png' style='width:24rpx;height:22rpx;'></image>
+              </block>
+              <block wx:else>
+                <image src='../../../img/story/halfhongxin.png' style='width:12rpx;height:22rpx;'></image>
+                <image src='../../../img/story/halfhongxin_di.png' style='width:12rpx;height:22rpx;transform:scale(-1,1);'></image>
+              </block>
+            </block>
+            <view style='width:10rpx;'></view>
+            <text style='font-size:22rpx;'>{{snatchInfo.game_heat}}</text>
+          </view>
+        </view>
+        <view class='pop-breif-item'>
+          <text style='font-size:22rpx;'>阅读量：{{snatchInfo.game_read_num}}</text>
+        </view>
+        <view class='pop-breif-item'>
+          <text style='font-size:22rpx;'>拥有者：{{snatchInfo.game_owner_nickname}}</text>
+        </view>
+      </view>
+
+    </view>
+
+    <view class='pop-content-value'>
+      <view class='pop-value-item'>
+        <view class='snatch-item-text'>
+          <text style='font-size:30rpx;color:white'>{{snatchInfo.game_v}}</text>
+          <text style='font-size:22rpx;color:white'>（金币）</text>
+        </view>
+        <view style='height:8rpx;'></view>
+        <text style='font-size:20rpx;color:white'>本书价值</text>
+      </view>
+      <view class='v-segment' style='height:80rpx;'></view>
+      <view class='pop-value-item'>
+        <view class='snatch-item-text'>
+          <text style='font-size:30rpx;color:white'>{{snatchInfo.game_v_hour}}</text>
+          <text style='font-size:22rpx;color:white'>（金币）</text>
+        </view>
+        <view style='height:8rpx;'></view>
+        <text style='font-size:20rpx;color:white'>占领收入/小时</text>
+      </view>
+      <view class='v-segment' style='height:80rpx;'></view>
+      <view class='pop-value-item'>
+        <view class='snatch-item-text'>
+          <text style='font-size:30rpx;color:white'>{{snatchInfo.game_v_total}}</text>
+          <text style='font-size:22rpx;color:white'>（金币）</text>
+        </view>
+        <view style='height:8rpx;'></view>
+        <text style='font-size:20rpx;color:white'>当前累计收益</text>
+      </view>
+    </view>
+    <view class='pop-content-profit'>
+      <text style='font-size:30rpx;'>预计收益</text>
+      <view style='height:22rpx;'></view>
+      <view class='pop-profit-bottom'>
+        <text style='font-size:22rpx;'>{{snatchInfo.game_v_hour_possible}}金币/小时</text>
+        <text style='font-size:22rpx;'>抢夺收益：{{snatchInfo.game_v_total_possible}}金币</text>
+      </view>
+    </view>
+
+  </view>
+  <block wx:for='{{jinbiEff}}'>
+    <view class='jinbi-view' style='height: {{index==jinbiEffIdx? "620rpx" :0}};'>
+      <image src='{{item}}' style='width:100%;height:100%;'></image>
+    </view>
+  </block>
+
+  <!-- <view wx:if='{{}}' class='jinbi-view' style='background:url({{jinbiEff[jinbiEffIdx]}});background-size:100%; display: {{5==jinbiEffIdx?"show":"show"}}'></view> -->
+
+  <view class='pop-indicate'>
+    <view class='pop-indicate-circle'>
+      <view class='snatch-click' hover-class='activity-hover' bindtap='ontapCircle'></view>
+      <view class='snatch-price'>
+        <text style='font-size:22rpx;color:white;'>500/次</text>
+      </view>
+
+    </view>
+  </view>
+  <view class='pop-rotation' style='transform:rotate({{rotation}}deg)' animation="{{animationData}}">
+    <view>
+      <view class='rotation-item'>
+        <image src='{{snatchInfo.game_play[0].img}}' style='width:78rpx;height:104rpx;'></image>
+      </view>
+      <view class='rotation-item' style='transform:rotate(60deg);left:380rpx;top:154rpx;'> 
+        <image src='{{snatchInfo.game_play[1].img}}' style='width:83rpx;height:84rpx;'></image>
+      </view>
+      <view class='rotation-item' style='transform:rotate(120deg);left:380rpx;top:308rpx;'>
+        <image src='{{snatchInfo.game_play[2].img}}' style='width:83rpx;height:84rpx;'></image>
+      </view>
+      <view class='rotation-item' style='transform:rotate(180deg);left:247rpx;top:386rpx;'>
+        <image src='{{snatchInfo.game_play[3].img}}' style='width:83rpx;height:84rpx;'></image>
+      </view>
+      <view class='rotation-item' style='transform:rotate(240deg);left:114rpx;top:308rpx;'>
+        <image src='{{snatchInfo.game_play[4].img}}' style='width:83rpx;height:84rpx;'></image>
+      </view>
+      <view class='rotation-item' style='transform:rotate(300deg);left:115rpx;top:154rpx;'>
+        <image src='{{snatchInfo.game_play[5].img}}' style='width:83rpx;height:84rpx;'></image>
+      </view>
+    </view>
+    <view>
+      <view class='cost-view'>
+        <text style='font-size:30rpx;color:white;'>{{snatchInfo.game_play[0].name}}</text>
+      </view>
+      <view class='cost-view' style='transform:rotate(60deg);left:438rpx;top:152rpx;'>
+        <text style='font-size:34rpx;color:#784022;'>{{snatchInfo.game_play[1].name}}</text>
+      </view>
+      <view class='cost-view' style='transform:rotate(120deg);left:438rpx;top:388rpx;'>
+        <text style='font-size:34rpx;color:white;'>{{snatchInfo.game_play[2].name}}</text>
+      </view>
+      <view class='cost-view' style='transform:rotate(180deg);left:232rpx;top:510rpx;'>
+        <text style='font-size:34rpx;color:#784022;'>{{snatchInfo.game_play[3].name}}</text>
+      </view>
+      <view class='cost-view' style='transform:rotate(240deg);left:22rpx;top:388rpx;'>
+        <text style='font-size:34rpx;color:white;'>{{snatchInfo.game_play[4].name}}</text>
+      </view>
+      <view class='cost-view' style='transform:rotate(300deg);left:22rpx;top:152rpx;'>
+        <text style='font-size:34rpx;color:#784022;'>{{snatchInfo.game_play[5].name}}</text>
+      </view>
+
+    </view>
+
+
+
+  </view>
+  <view class='pop-base'></view>
+  <view class='pop-bottom'></view>
+
+
+</view>
+
+<view wx:if='{{popResult}}' class='popbg-view' style='justify-content:center'>
+  <view class='pop-result'>
+    <view class='pop-result-top'>
+      <text style='color:white;font-size:34rpx'>抢小说赚钱</text>
+    </view>
+    <view class='pop-result-bottom'>
+      <view class='pop-result-sp1'>
+        <view style='height:30rpx;'></view>
+        <text style='color:red;font-size:40rpx;'>恭喜您抢夺成功</text>
+        <view style='height:40rpx;'></view>
+        <text style='color:black;font-size:26rpx;'>当前收益</text>
+      </view>
+      <view class='h-segment'></view>
+      <view class='pop-result-sp1'>
+        <view class='pop-profit-bottom'>
+          <text style='font-size:30rpx;'>书名：{{resultConfirm.title}}</text>
+          <text style='font-size:30rpx;'>拥有者：{{resultConfirm.game_owner_nickname}}</text>
+        </view>
+        <view style='height:20rpx;'></view>
+        <view class='snatch-item-text'>
+          <text style='font-size:30rpx;'>抢夺收益：</text>
+          <text style='font-size:30rpx;color:red'>{{resultConfirm.game_v_play}}</text>
+          <text style='font-size:30rpx;'>（金币）</text>
+        </view>
+        <view style='height:20rpx;'></view>
+        <text style='font-size:22rpx;'>（已直接进入您的金币账户）</text>
+      </view>
+      <view class='h-segment'></view>
+      <view class='pop-result-sp2'>
+        <view class='pop-value-item' style='width:50%;'>
+          <text style='font-size:30rpx;'>{{resultConfirm.game_v_hour}}</text>
+          <view style='height:8rpx;'></view>
+          <text style='font-size:22rpx;color:gray;'>占领收入/小时（金币）</text>
+        </view>
+
+        <view class='pop-value-item' style='width:50%;'>
+          <text style='font-size:30rpx;'>{{resultConfirm.game_v_total}}</text>
+          <view style='height:8rpx;'></view>
+          <text style='font-size:22rpx;olor:gray;'>当前累计收益（金币）</text>
+        </view>
+      </view>
+      <view class='h-segment'></view>
+      <view class='pop-result-sp1'>
+        <!-- <text style='color:red;font-size:22rpx;'>如被他人抢夺，返回全部本金</text> -->
+        <view style='height:20rpx;'></view>
+        <view class='comm-btn' style='border-radius: 30rpx;width:250rpx;backgroud:red;' hover-class='activity-hover' bindtap='ontapResultConfirm'>
+          <text style='font-size:30rpx;color:white'>确认</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if='{{popOwner}}' class='popbg-view' catchtouchmove='onTouchmove' style='justify-content:center;'>
+  <image bindtap='hidePopOwner' src='../../../img/guanbi_button.png' style='width:41rpx;height:40rpx;margin-left:520rpx'></image>
+  <view style='height:15rpx;'></view>
+  <view class='pop-content-owner'>
+    <view class='pop-content-title'>
+      <text style='color:white;font-size:38rpx;'>抢小说赚钱</text>
+    </view>
+    <view class='pop-content-brief'>
+      <view class='pop-breif-img'>
+        <image src='{{snatchInfo.img}}' style='width:100%;height:100%'></image>
+      </view>
+      <view class='pop-breif-content'>
+        <view class='pop-breif-item'>
+          <text style='font-size:22rpx;'>{{snatchInfo.title}}</text>
+          <text style='font-size:22rpx;'>作者：{{snatchInfo.author}}</text>
+        </view>
+        <view class='pop-breif-item'>
+          <view class='pop-breif-item-hot'>
+            <text style='font-size:22rpx;'>热度：</text>
+            <block wx:for='{{bookHeat}}'>
+              <block wx:if='{{item==1}}'>
+                <view wx:if='{index}' style='width:5rpx;'></view>
+                <image src='../../../img/story/hongxin.png' style='width:24rpx;height:22rpx;'></image>
+              </block>
+              <block wx:else>
+                <image src='../../../img/story/halfhongxin.png' style='width:12rpx;height:22rpx;'></image>
+                <image src='../../../img/story/halfhongxin_di.png' style='width:12rpx;height:22rpx;transform:scale(-1,1);'></image>
+              </block>
+            </block>
+            <view style='width:10rpx;'></view>
+            <text style='font-size:22rpx;'>{{snatchInfo.game_heat}}</text>
+          </view>
+        </view>
+        <view class='pop-breif-item'>
+          <text style='font-size:22rpx;'>阅读量：{{snatchInfo.game_read_num}}</text>
+        </view>
+        <view class='pop-breif-item'>
+          <text style='font-size:22rpx;'>拥有者：{{snatchInfo.game_owner_nickname}}</text>
+        </view>
+      </view>
+
+    </view>
+
+    <view class='pop-content-value'>
+      <view class='pop-value-item'>
+        <view class='snatch-item-text'>
+          <text style='font-size:30rpx;color:white'>{{snatchInfo.game_v}}</text>
+          <text style='font-size:22rpx;color:white'>（金币）</text>
+        </view>
+        <view style='height:8rpx;'></view>
+        <text style='font-size:20rpx;color:white'>本书价值</text>
+      </view>
+      <view class='v-segment' style='height:80rpx;'></view>
+      <view class='pop-value-item'>
+        <view class='snatch-item-text'>
+          <text style='font-size:30rpx;color:white'>{{snatchInfo.game_v_hour}}</text>
+          <text style='font-size:22rpx;color:white'>（金币）</text>
+        </view>
+        <view style='height:8rpx;'></view>
+        <text style='font-size:20rpx;color:white'>占领收入/小时</text>
+      </view>
+      <view class='v-segment' style='height:80rpx;'></view>
+      <view class='pop-value-item'>
+        <view class='snatch-item-text'>
+          <text style='font-size:30rpx;color:white'>{{snatchInfo.game_v_total}}</text>
+          <text style='font-size:22rpx;color:white'>（金币）</text>
+        </view>
+        <view style='height:8rpx;'></view>
+        <text style='font-size:20rpx;color:white'>当前累计收益</text>
+      </view>
+    </view>
+    <view class='pop-content-profit'>
+      <text style='font-size:30rpx;'>预计收益</text>
+      <view style='height:22rpx;'></view>
+      <view class='pop-profit-bottom'>
+        <text style='font-size:22rpx;'>{{snatchInfo.game_v_hour_possible}}金币/小时</text>
+        <text style='font-size:22rpx;'>抢夺收益：{{snatchInfo.game_v_total_possible}}金币</text>
+      </view>
+    </view>
+
+  </view>
+
+
+
+
+
+</view>

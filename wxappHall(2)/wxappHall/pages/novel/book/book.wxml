@@ -1,0 +1,196 @@
+<!--pages/novel/book/book.wxml-->
+
+
+<view wx:if='{{showControl}}' class='left-control' style='top:{{controlTop}}' catchtouchmove='onMove'>
+  <view wx:if='{{chapterOpen}}' class='chapter-container'>
+    <view class='mchapter-title-view' style='height:5vh'>
+      <view style='width:100rpx;'></view>
+      <text style='color:black;font-size:30rpx;'>章节</text>
+      <view style='width:100rpx;'></view>
+    </view>
+    <view style='width:80vw;'>
+      <view class='mfenge-content'></view>
+    </view>
+
+    <scroll-view scroll-y='true' class='chapter-view' style='height:94vh;width:80vw;' catchtap='onCatchChapter'>
+      <block wx:for='{{chapter}}' wx:key='chapter_id'>
+        <view wx:if='{{index}}' class='mfenge-content'></view>
+        <view class='chapter-title-view' data-chapterid='{{item.chapter_id}}' hover-class="activity-hover" bindtap='onViewPage'>
+          <text style='color:{{item.chapter_id==chapterid ? "red":"gray"}};font-size:26rpx;'>{{item.chapter_name}}</text>
+          <image src='../../../img/story/to.png' style='width:16rpx;height:35rpx;'></image>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+
+
+  <view wx:if='{{chapterOpen}}' class='little-view' bindtap='onchapterClose'>
+    <view class='little-control' hover-class="activity-hover">
+      <text style='font-size:24rpx; writing-mode: tb-rl; letter-spacing:10rpx;margin-top:5rpx;'> 章节</text>
+      <image src='../../../img/story/to.png' style='width:16rpx;height:35rpx;transform: scale(-1,1);'></image>
+    </view>
+  </view>
+  <view wx:if='{{chapterOpen==false}}' class=''>
+    <view class='little-control' hover-class="activity-hover" bindtap='onTapControl'>
+      <text style='font-size:24rpx; writing-mode: tb-rl; letter-spacing:10rpx;margin-top:5rpx;'> 章节</text>
+      <image src='../../../img/story/to.png' style='width:16rpx;height:35rpx;'></image>
+    </view>
+    <view wx:if='{{false}}' class='little-control' hover-class="activity-hover" bindtap='onTapMark'>
+      <text style='font-size:24rpx; writing-mode: tb-rl; letter-spacing:10rpx;margin-top:5rpx;'> 收藏</text>
+      <image src='../../../img/story/to.png' style='width:16rpx;height:35rpx;'></image>
+    </view>
+  </view>
+</view>
+
+<view class='bottom-control' wx:if='{{showControl && chapterOpen==false}}' catchtouchmove='onMove'>
+  <view class='bottom-control-content'>
+    <view class='bottom-control-item' hover-class="activity-hover" bindtap='onTapReadMode'>
+      <block wx:if='{{readMode == 0}}'>
+        <image src='http://ju.cdn.giantfun.cn/yueEarn/story/img/control/night_button.png' style='width:60rpx;height:60rpx;'></image>
+        <text style='font-size:30rpx;'>夜间</text>
+      </block>
+      <block wx:else>
+        <image src='http://ju.cdn.giantfun.cn/yueEarn/story/img/control/sun_button.png' style='width:60rpx;height:60rpx;'></image>
+        <text style='font-size:30rpx;'>日间</text>
+      </block>
+
+    </view>
+    <view class='bottom-control-item' hover-class="activity-hover" bindtap='onTapBottom' data-idx='1'>
+      <block wx:if='{{seleIdx==1}}'>
+        <image src='http://ju.cdn.giantfun.cn/yueEarn/story/img/control/ziti_button_down.png' style='width:60rpx;height:60rpx;'></image>
+        <text style='color:red;font-size:30rpx;'>字体</text>
+      </block>
+      <block wx:else>
+        <image src='http://ju.cdn.giantfun.cn/yueEarn/story/img/control/ziti_button.png' style='width:60rpx;height:60rpx;'></image>
+        <text style='font-size:30rpx;'>字体</text>
+      </block>
+
+    </view>
+    <view class='bottom-control-item' hover-class="activity-hover" bindtap='onTapBottom' data-idx='2'>
+      <block wx:if='{{seleIdx==2}}'>
+        <image src='http://ju.cdn.giantfun.cn/yueEarn/story/img/control/light_button_down.png' style='width:60rpx;height:60rpx;'></image>
+        <text style='color:red;font-size:30rpx;'>亮度</text>
+      </block>
+      <block wx:else>
+        <image src='http://ju.cdn.giantfun.cn/yueEarn/story/img/control/light_button.png' style='width:60rpx;height:60rpx;'></image>
+        <text style='font-size:30rpx;'>亮度</text>
+      </block>
+    </view>
+    <view class='bottom-control-item' hover-class="activity-hover" bindtap='onTapBottom' data-idx='3'>
+      <block wx:if='{{false}}'>
+        <image src='http://ju.cdn.giantfun.cn/yueEarn/story/img/control/liuyan_button_down.png' style='width:60rpx;height:60rpx;'></image>
+        <text style='color:red;font-size:30rpx;'>收藏</text>
+      </block>
+      <block wx:else>
+        <image src='http://ju.cdn.giantfun.cn/yueEarn/story/img/control/shoucang_button.png' style='width:60rpx;height:60rpx;'></image>
+        <text style='font-size:30rpx;'>收藏</text>
+      </block>
+    </view>
+  </view>
+</view>
+
+<view class='bright-set' wx:if='{{showControl && chapterOpen==false &&seleIdx==2}}' catchtouchmove='onMove'>
+  <view class='bright-set-top'>
+    <view class='bright-slider-view'>
+      <image src='http://ju.cdn.giantfun.cn/yueEarn/story/img/control/light2.png' style='width:60rpx;height:60rpx;'></image>
+      <view style='width:5rpx;'></view>
+      <slider style='width:480rpx;' block-color='#1aad19' value='{{bright}}' bindchange='onBrightChange'></slider>
+      <view style='width:5rpx;'></view>
+      <image src='http://ju.cdn.giantfun.cn/yueEarn/story/img/control/light_button.png' style='width:60rpx;height:60rpx;'></image>
+    </view>
+  </view>
+  <view class='bright-set-segment'></view>
+  <view class='bright-set-bottom'>
+    <text style='font-size:30rpx;'>背景色：</text>
+    <block wx:for='{{readbgColors}}'>
+      <view class='readbg-color' style='background:{{item}}' hover-class="activity-hover" data-color='{{item}}' bindtap='onTapBgColor'>
+        <icon wx:if="{{(readMode==0&&item==daybgColor) || (readMode==1&&item==nightbgColor)}}" type="success_no_circle" size="26" color="white" />
+      </view>
+    </block>
+  </view>
+  <view class='bright-set-segment'></view>
+</view>
+
+<view class='font-set' wx:if='{{showControl && chapterOpen==false &&seleIdx==1}}' catchtouchmove='onMove'>
+  <view class='font-set-content'>
+    <view class='font-set-left'>
+      <view class='font-set-size' hover-class="activity-hover" data-value='-1' bindtap='onTapFontSize'>
+        <image src='http://ju.cdn.giantfun.cn/yueEarn/story/img/control/ajian_button.png' style='width:60rpx;height:60rpx;'></image>
+      </view>
+      <text>{{fontSize}}</text>
+      <view class='font-set-size' hover-class="activity-hover" data-value='1' bindtap='onTapFontSize'>
+        <image src='http://ju.cdn.giantfun.cn/yueEarn/story/img/control/aplus_button.png' style='width:60rpx;height:60rpx;'></image>
+      </view>
+
+    </view>
+    <view class='font-set-segment'></view>
+    <view class='font-set-right' hover-class="activity-hover" bindtap='onTapShowFamily'>
+      <text style='font-size:36rpx;color:#06dbf4;font-family:{{fontFamily.value}}'>{{fontFamily.name}}</text>
+      <view style='width:20rpx;'></view>
+      <image src='http://ju.cdn.giantfun.cn/yueEarn/story/img/control/xiala_jiantou.png' style='width:35rpx;height:16rpx;transform: scale(1,{{openSeleFamily==true ? 1 : -1}});'></image>
+    </view>
+  </view>
+  <view class='bright-set-segment'></view> 
+</view>
+
+<view class='sele-family' wx:if='{{showControl&&chapterOpen==false&&seleIdx==1&&openSeleFamily==true}}' catchtouchmove='onMove'>
+  <block wx:for='{{fontFamilys}}'>
+    <view class='sele-family-item' hover-class="activity-hover" data-family='{{index}}' bindtap='onTapSeleFamily'>
+      <view style='height:0rpx;'>
+        <view class='sele-family-item' style='justify-content:center;width:50vw;'>
+          <text style='color:{{fontFamily.value==item.value?"red":"black"}};font-family:{{item.value}};font-size:36rpx;'>{{item.name}}</text>
+        </view>
+      </view>
+      <view wx:if='{{fontFamily==item}}' class='sele-family-icon'>
+      <icon type="success_no_circle" size="16" color="red" />
+      </view>
+      
+
+    </view>
+    <view class='bright-set-segment'></view>
+  </block>
+</view>
+
+
+<scroll-view scroll-into-view='target{{targetid}}' scroll-y='{{canScroll}}' style='height:100vh;width:100%;display:flex;flex-direction:column;' bindscrolltolower='onNext' bindscrolltoupper='onPre' bindscroll='onContentScroll' scroll-top='{{scrollTop}}'>
+  <block wx:for='{{books}}'>
+    <view class='bg-view' bindtap='onTap' data-chapterid='{{item.chapter_id}}' style='background: {{readMode==0 ? daybgColor : nightbgColor}};'>
+      <view wx:if='{{index}}'  style='height:40rpx;width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center'>
+      <image src='http://ju.cdn.giantfun.cn/yueEarn/story/img/zhangjiefengexian.png' style='width:100%; height:4rpx;'></image>
+      </view>
+      
+      <view style='height:20rpx;'></view>
+      <view id='target{{item.chapter_id}}' class='title-view'>
+        <text style='color:{{readMode==0?daytfColor:nighttfColor}};font-size:{{fontSize+3}}rpx;font-family:{{fontFamily.value}};font-weight:500;'>{{item.chapter_name}}</text>
+      </view>
+      <view class='content-view'>
+        <text style='position:relative;left:0rpx;color:{{readMode==0?daytfColor:nighttfColor}};font-size:{{fontSize}}rpx;line-height:180%;letter-spacing:5rpx;font-family:{{fontFamily.value}}'>{{item.content}}</text>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modalTips" wx:if="{{showModal}}">
+  <text style="margin:50rpx;width:100%;">首次阅读小说获取5000金币，继续看小说赚钱吧。</text>
+  <button type='warn' style="width:100%" class="marginview" bindtap="closeModal">确定</button>
+</view>
+
+<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showMarkBook}}">
+  <view class="markbook-view">
+    <view class='markbook-top'>
+      <text style='font-size:30rpx'>是否将本书加入书架</text>
+    </view>
+    <view class='markbook-bottom'>
+      <view class='markbook-btn' hover-class="activity-hover" bindtap='onCancelMark'>
+        <text style='color:white;font-size:30rpx'>取消</text>
+      </view>
+      <view class='markbook-bottom-fenge'></view>
+      <view class='markbook-btn' hover-class="activity-hover" bindtap='onConfirmMark'>
+        <text style='color:yellow;font-size:30rpx'>收藏</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<book-reward></book-reward>

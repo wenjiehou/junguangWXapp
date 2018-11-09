@@ -1,0 +1,7 @@
+var list_bg_img = "../../img/giftList/gundong_di.png";
+var list_toubg_img = "../../img/giftList/touxiang_kuang.png"; 
+
+module.exports = {
+  list_bg_img: list_bg_img,
+  list_toubg_img: list_toubg_img
+}

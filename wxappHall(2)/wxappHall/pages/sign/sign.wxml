@@ -1,0 +1,223 @@
+<!--pages/sign/sign.wxml-->
+<view class='bc_red'>
+  <!-- <view class='sign-view'>
+    <block wx:for="{{signList}}" wx:key="date">
+      <view wx:if='{{index}}' class='sign-fenge'></view>
+      <block wx:if='{{item.before}}'>
+        <view class='sign-before'>
+          <view style='height:0rpx;'>
+            <image src='../../img/sign/yuan.png' class='sign-img'></image>
+          </view>
+          <view class='sign-before'>
+            <text wx:if='{{item.today}}' class='sign-text'>今日</text>
+            <text wx:elif='{{item.yesterday}}' class='sign-text'>昨日</text>
+            <text wx:else class='sign-text'>{{item.date}}</text>
+          </view>
+        </view>
+      </block>
+      <block wx:elif='{{item.baoxiang}}'>
+        <image src='../../img/sign/libao_icon.png' class='sign-img'></image>
+      </block>
+      <block wx:else>
+        <view class='sign-yuandian'>
+          <view>
+            <text style='color:white;font-size:20rpx;'>{{item.date}}</text>
+            <view style='height:60rpx'></view>
+          </view>
+        </view>
+      </block>
+    </block>
+  </view> -->
+
+  <image src='../../img/sign/qiandaozi.png' style='width:526rpx;height:48rpx;'></image>
+  <view class='top-fenge'>
+    <view class='fenge-huang'></view>
+    <view style='width:10rpx;'></view>
+    <text style='color:#fcdb00;font-size:24rpx;'>可提现</text>
+    <view style='width:10rpx;'></view>
+    <view class='fenge-huang'></view>
+  </view>
+
+  <view style='display:flex;flex-direction: row;align-items: center;justify-content:center;width:100%'>
+    <text style='color:white;font-size:40rpx;'>￥</text>
+    <text style='color:white;font-size:60rpx;'>0</text>
+    <view style='width:10rpx;'></view>
+    <text style='color:white;font-size:40rpx;'>元</text>
+    <view style='width:30rpx;'></view>
+    <view hover-class="activity-hover" class='treasure-view' style='width:150rpx;height:50rpx;' bindtap="showDialogBtn" data-pop_idx='3'>
+      <text style='color:red;font-size:28rpx;font-weight:600rpx;font-family:SimHei;'>提现方式</text>
+    </view>
+  </view>
+  <view style='display:flex;flex-direction: column;align-items: center;justify-content:space-around;'>
+    <view hover-class="activity-hover" class='treasure-view' bindtap="showDialogBtn" data-pop_idx='1'>
+      <text wx:if='{{hasShare==false}}' style='color:red;font-size:35rpx;font-weight:600rpx;font-family:SimHei;'>签到领现金</text>
+      <text wx:elif='{{hasShare==true}}' style='color:red;font-size:35rpx;font-weight:600rpx;font-family:SimHei;'>分享赚钱链接，继续赚钱</text>
+    </view>
+    <view style='height:10rpx;'></view>
+    <text style='color:white;font-size:28rpx;font-family:SimHei;'>签到提醒</text>
+  </view>
+
+</view>
+
+<view class='search-view'>
+  <view class='mid-left-bottom-view'>
+    <image src='../../img/icon_hotgame.png' style='width:37rpx;height:38rpx;'></image>
+    <text style='color: #000000;font-size:30rpx;margin-left: 10rpx;font-weight: 700;'>今日推荐</text>
+  </view>
+</view>
+
+<view style='margin-left:30rpx;margin-right:30rpx;'>
+  <view class='fenge-content'></view>
+</view>
+
+<view style="display: flex;flex-direction:column;">
+
+  <block wx:for="{{book_list}}" wx:for-item="novel_id">
+    <view style='height:6rpx;'></view>
+    <view wx:if='{{index%3==0}}' class='game-list' style='margin-top: 20rpx;margin-left: 40rpx;margin-right: 40rpx;'>
+
+      <block wx:for="{{[book_list[index],book_list[index+1],book_list[index+2]]}}">
+        <view style='display: flex;flex-direction: column;align-items: center;'>
+          <view hover-class="activity-hover" style='flex-direction: column;border-radius: 10px;display: flex;justify-content:space-around;align-items: center;' data-bookid='{{item.book_id}}' bindtap='onBookTap'>
+            <image src='{{item.book_list_img}}' style='width:185rpx;height:256rpx'></image>
+          </view>
+          <text style='color:black;font-size:24rpx;'>{{item.title}}</text>
+        </view>
+      </block>
+    </view>
+  </block>
+</view>
+
+<!-- 
+<button class="show-btn" bindtap="showDialogBtn">弹窗</button> -->
+
+<!--弹窗-->
+<view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{showModal && verify==false}}">
+
+  <block wx:if='{{popIndex == 1}}'>
+    <view class='top-view'>
+      <view class='tm-view'>
+        <image src='../../img/sign/hongbao3.png' style='width:88rpx;height:110rpx'></image>
+        <view class='row-view-gap'></view>
+        <text style='color:red;font-size:50rpx;'>分享后即可获得现金</text>
+      </view>
+      <view class='column-view-gap'></view>
+      <view class='mm-view'>
+        <text style='color:white;font-size:36rpx;'>每邀请一位好友签到</text>
+        <text style='color:white;font-size:36rpx;'>额外再得现金（每份最高15元）</text>
+      </view>
+    </view>
+    <view class='bottom-view'>
+      <view class='bt-view'>
+        <view class='mfenge-content'></view>
+        <view class='row-view-gap'></view>
+        <text style='color:black;font-size:40rpx;'>分享到</text>
+        <view class='row-view-gap'></view>
+        <view class='mfenge-content'></view>
+      </view>
+      <button open-type='share' class='share-btn' bindtap='onTapShare'>
+        <view class='weixin-img-view' hover-class="activity-hover">
+          <image src='../../img/sign/weixin.png' style='width:106rpx;height:106rpx'></image>
+          <text style='color:black;font-size:36rpx;'>微信好友</text>
+        </view>
+      </button>
+      <view class='cancel-view' hover-class="activity-hover" bindtap="hideModal">
+        <text style='color:white;font-size:40rpx;'>取消</text>
+      </view>
+    </view>
+  </block>
+
+  <block wx:if='{{popIndex == 2}}'>
+    <view class='pop-view-bg' style='height:100%'>
+      <view class='reward-view'>
+        <image bindtap='onCloseModal' src='../../img/guanbi_button.png' style='width:41rpx;height:40rpx;margin-left:540rpx'></image>
+        <view style='height:20rpx;'></view>
+        <view class='reward-top-view'>
+          <text style='color:#fff;font-size:36rpx;'>今日签到奖励</text>
+          <view style='height:20rpx;'></view>
+          <text style='color:#ffea00;font-size:44rpx;'>{{signReward}}元</text>
+        </view>
+        <view class='reward-bottom-view'>
+          <view style='height:10rpx;'></view>
+          <text style='color:red;font-size:36rpx;'>已分享给好友</text>
+          <view style='height:10rpx;'></view>
+          <text style='color:red;font-size:36rpx;'>记得提醒好友点击哦！</text>
+          <view style='height:10rpx;'></view>
+          <text style='color:black;font-size:36rpx;'>好友点击双方都可以领到钱</text>
+          <view style='height:40rpx;'></view>
+          <text style='color:black;font-size:30rpx;'>今日好友点击奖励</text>
+          <view style='height:40rpx;'></view>
+          <text style='color:red;font-size:44rpx;'>{{shareReward}}元</text>
+          <view style='height:70rpx;'></view>
+          <view class='reward-bottom-btn' hover-class="activity-hover" bindtap="onToNovel">
+            <text style='color:white;font-size:32rpx;'>看小说也能挣钱！赶紧试试吧！</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+  </block>
+
+  <block wx:if='{{popIndex == 3}}'>
+    <view class='pop-view-bg' style='height:100%'>
+      <view class='reward-view'>
+        <image bindtap='onCloseModal' src='../../img/guanbi_button.png' style='width:41rpx;height:40rpx;margin-left:540rpx'></image>
+        <view style='height:20rpx;'></view>
+        <view class='reward-top-view' style='height:200rpx;justify-content: flex-end;'>
+          <text style='color:#fff;font-size:44rpx;'>今日签到成功</text>
+          <view style='height:10rpx;'></view>
+          <text style='color:#ffea00;font-size:44rpx;'>获得￥{{signReward}}元</text>
+          <view style='height:10rpx;'></view>
+          <text style='color:white;font-size:30rpx;'>已存入您的零钱账户</text>
+          <view style='height:5rpx;'></view>
+        </view>
+        <view class='reward-bottom-view'>
+          <text style='color:red;font-size:34rpx'>恭喜获得新人红包，可直接体现</text>
+          <view style='height:50rpx;'></view>
+          <image src='http://ju.cdn.giantfun.cn/yueEarn/xinrenhongbao.png' style='width:502rpx;height:308rpx;'></image>
+          <view class='reward-bottom-btn' hover-class="activity-hover" bindtap="onGotNewReward">
+            <text style='color:white;font-size:32rpx;'>打开领取</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+  </block>
+
+
+  <block wx:if='{{popIndex == 4}}'>
+    <view class='pop-view-bg'>
+      <view class='new-reward-view'>
+        <view class='new-reward-top'>
+          <view style='height:0rpx;'>
+            <image src='../../img/biaotidi.png' style='width:431rpx;height:160rpx;'></image>
+          </view>
+          <view style='height:110rpx;display:flex;flex-direction:column;justify-content:center'>
+            <text style='color:#ffea00;font-size:44rpx;'>新人红包</text>
+          </view>
+        </view>
+        <view class='new-reward-mid'>
+
+          <text style='color:#ffea00;font-size:44rpx;'>获得￥{{newReward}}元</text>
+          <view style='height:10rpx;'></view>
+          <view class='new-text-mid'>
+            <text style='color:white;font-size:28rpx;'>已发送到您的零钱账户</text>
+          </view>
+          <text style='color:white;font-size:28rpx;width:400rpx;'>连续3天每天签到都可以获得新手额外奖励</text>
+          <view style='height:90rpx;'></view>
+        </view>
+        <view class='new-text-mid' style='justify-content:center'>
+          <text style='color:white;font-size:28rpx;'>边看小说边赚钱，赶快开启你的赚钱新方式吧</text>
+        </view>
+        <view class='reward-bottom-btn' style='width:500rpx;background:#ffea00;' hover-class="activity-hover" bindtap="onToNovel">
+          <text style='color:#f30000;font-size:40rpx;'>去看小说赚钱</text>
+        </view>
+
+      </view>
+    </view>
+  </block>
+
+
+</view>

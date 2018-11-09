@@ -1,0 +1,12 @@
+<!--pages/test/test.wxml-->
+<!-- <view class="circle-box">
+  <canvas canvas-id="canvasCircle" class="circle" style="z-index:-99;width:200px;height:200px;">
+  </canvas>
+  <canvas canvas-id="canvasArcCir" class="circle" style="width:200px;height:200px;">
+  </canvas>
+  <view bindtap="drawCircle" class="draw_btn">开始动态绘制</view>
+</view> -->
+
+<!-- <pop-box popModal='true' bind:popBoxEvent ='popBoxEvent'></pop-box> -->
+<book-reward></book-reward>
+

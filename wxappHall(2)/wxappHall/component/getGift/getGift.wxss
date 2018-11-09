@@ -1,0 +1,60 @@
+/* component/getGift/getGift.wxss */
+
+.flex-wrpitem {
+  display: flex;
+  width: 520rpx;
+  height:104rpx;
+  border-style:solid;
+  border-radius: 14rpx;
+  border-width: 4rpx;
+  border-color: #ce4031;
+  box-shadow: 0 1px 2px  #ccc;
+  align-items: center;
+  background: white;
+  justify-content:space-around;
+
+}
+
+.activity-hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 0.7;
+}
+
+.playerAct-nametf {
+  color: #000000;
+  font-family: "黑体";
+  font-size:30rpx;
+
+}
+
+.playerAct-nametflin {
+  color: #ff0000;
+  font-family: "黑体";
+  font-size:26rpx;
+
+}
+
+.playerAct-occurtf{
+  color: #888888;font-family: "黑体";font-size:24rpx;
+}
+
+.item-view{
+  display: flex;justify-content:space-around;align-items: center;border-radius: 5px;
+}
+
+.img-view{
+  width:0rpx;height:92rpx;
+}
+
+.img-head{
+  width:92rpx;height:92rpx;border-radius: 50%;
+}
+
+.column-center{
+  display: flex;flex-direction:column;justify-content:space-between;align-items: center;
+}
+
+.row-center{
+  display: flex;flex-direction:row;justify-content:space-between;align-items: center;
+}
+

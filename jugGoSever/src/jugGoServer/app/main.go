@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"jugGoServer/server"
+	"jugGoServer/test"
 	"os"
 	"os/signal"
 	"runtime"
@@ -11,15 +12,16 @@ import (
 
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
-
-	//	defer func() {
-	//		if err := recover(); err != nil {
-	//			fmt.Println(err)
-	//		}
-	//	}()
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println(err)
+		}
+	}()
 
 	fmt.Println("server start !")
 	server.Start()
+
+	test.TestGorm()
 
 	exitChan := make(chan struct{})
 	signalChan := make(chan os.Signal, 1)

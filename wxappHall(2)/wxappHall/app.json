@@ -1,0 +1,67 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/test/test",
+    "pages/test/test01/test01",
+    "pages/novel/chapter/chapter",
+    "pages/novel/novel",
+    "pages/novel/search/search",
+    "pages/novel/book/book",
+    "pages/novel/allNovel/allNovel",
+    "pages/novel/shelf/shelf",
+    "pages/sign/sign",
+    "pages/message/message",
+    "pages/game/game",
+    "pages/wealth/wealth",
+    "pages/task/task",
+    "pages/logs/logs",
+    "pages/login/login",
+    "pages/home/news/news"
+    
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ce4031",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "whlte",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "position": "bottom",
+    "color": "#b5b5b5",
+    "selectedColor": "#e13131",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "img/tabBar/jiayuan_button.png",
+        "selectedIconPath": "img/tabBar/jiayuan_button_down.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/sign/sign",
+        "iconPath": "img/tabBar/qiandao_button.png",
+        "selectedIconPath": "img/tabBar/qiandao_button_down.png",
+        "text": "签到"
+      },
+      {
+        "pagePath": "pages/wealth/wealth",
+        "iconPath": "img/tabBar/caifu_button.png",
+        "selectedIconPath": "img/tabBar/caifu_button_down.png",
+        "text": "财富"
+      },
+      {
+        "pagePath": "pages/game/game",
+        "iconPath": "img/tabBar/game_button.png",
+        "selectedIconPath": "img/tabBar/game_button_down.png",
+        "text": "游戏"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "iconPath": "img/tabBar/xiaoxi_button.png",
+        "selectedIconPath": "img/tabBar/xiaoxi_button_down.png",
+        "text": "消息"
+      }
+    ]
+  }
+}

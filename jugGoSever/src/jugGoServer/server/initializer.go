@@ -61,6 +61,7 @@ func initDb() error {
 
 	err = db.AutoMigrate(
 		model.User{},
+		model.Recomend{},
 	).Error
 
 	if err != nil {

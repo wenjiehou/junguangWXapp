@@ -1,0 +1,36 @@
+/* pages/game/game.wxss */
+
+.game-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+
+.game-img-view {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  justify-content: flex-start;
+  align-items: center;
+ 
+  width: 201rpx;
+  height: 277rpx;
+  background: red;
+ 
+}
+
+.game-title-text{
+  display: -webkit-box;
+    font-size:24rpx;
+    color: black;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:1;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    font-weight: bold;
+}

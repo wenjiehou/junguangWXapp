@@ -1,0 +1,13 @@
+<!--pages/task/task.wxml-->
+<view class="bc_red">
+  <view style='display:flex;flex-direction: column;align-items: center;justify-content:space-around;'>
+    <view hover-class="activity-hover" class='treasure-view'>
+      <text style='color:white;font-size:40rpx; font-family: "SimHei";font-weight: 600'>开启宝箱</text>
+    </view>
+    <text style='color:white;font-size:28rpx; font-family: "SimHei";margin-top:10rpx;'>宝箱每四小时开启一次</text>
+  </view>
+</view>
+<gift-list autoPlay="{{autoPlay}}"/>
+<task-list title="{{newbieTasks.title}}" icon="{{newbieTasks.icon}}" listData="{{newbieTasks.list}}" bind:itemBtnEvent = "onClickTaskItem" />
+<task-list title="{{dailyTasks.title}}" icon="{{dailyTasks.icon}}" listData="{{dailyTasks.list}}" bind:itemBtnEvent = "onClickTaskItem" />
+<view style='height:20rpx'></view>

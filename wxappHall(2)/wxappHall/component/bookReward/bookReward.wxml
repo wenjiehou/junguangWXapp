@@ -1,0 +1,30 @@
+<!--component/bookReward/bookReward.wxml-->
+<view class='right-top'>
+  <view id="orignal-pos" class='reward-cutdown' hover-class='activity-hover' bindtouchstart='ontouchStart' bindtouchend='ontouchEnd'>
+    <view id='canvas-container' style='width:56rpx;height:56rpx;'>
+      <canvas canvas-id="canvasArcCir" class="circle"></canvas>
+    </view>
+  </view>
+  <view class='tip' style='display:{{showTip}}'>
+    <text style='font-size:19rpx;'>持续阅读，赚金币！</text>
+  </view>
+</view>
+
+<view wx:if='{{popMode}}' class='pop-reward'>
+  <view id="target-pos" class='pop-container' style='display: {{showEff==true?"show":"none"}};transform: scale({{scale}}, {{scale}});' animation="{{animationData}}">
+    <view class='pop-bg'></view>
+    <view class='pop-content'></view>
+  </view>
+ <block wx:for='{{jinbiEff}}'>
+    <view class='jinbi-view' style='height: {{index==jinbiEffIdx? "620rpx" :0}};'>
+      <image src='{{item}}' style='width:100%;height:100%;'></image>
+    </view>
+  </block>
+</view>
+
+<view wx:if='{{popValue}}' class='value-view'>
+  <view class='value-bg'>
+    <text style='font-size:78rpx;color:#24ff00'>+{{value}}</text>
+  </view>
+
+</view>

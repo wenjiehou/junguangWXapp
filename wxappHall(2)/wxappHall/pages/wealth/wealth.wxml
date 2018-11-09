@@ -1,0 +1,105 @@
+<!--pages/self/wealth.wxml-->
+
+<view class="bc_red">
+  <!-- 这里展示登录 -->
+  <view class="userinfo">
+    <button size='mini' wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+      <text style='color:black;font-size:30rpx;'>登录</text>
+    </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text style='color:white;font-size:30rpx;'>ID 1245688</text>
+    </block>
+  </view> 
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>
+
+<view class='wealth-view'>
+  <view class='wealth-content-view'>
+    <image src='../../img/wealth/zichan_icon.png' style='width:96rpx;height:109rpx;'></image>
+    <view style='width:15rpx;'></view>
+    <view class='wealth-text-view'>
+      <text style='color:black;font-size:40rpx;'>总资产：{{mUserinfo.dream_value}}</text>
+      <text style='color:black;font-size:26rpx;'>（价值）</text>
+    </view>
+    <!-- <view hover-class="activity-hover" class='item-red-btn'>
+      <text style='color:white;font-size:30rpx;'>提现</text>
+    </view> -->
+  </view>
+</view>
+
+<view style='height:20rpx;'></view>
+
+
+<view wx:if='{{!verify}}' class='deatil-view'>
+  <view class='detail-content1-view'>
+    <view class='detail-money-view'>
+      <text style='color:black;font-size:33rpx;'>我的零钱</text>
+      <view style='width:10rpx;'></view>
+      <image src='../../img/story/coin.png' style='width:42rpx;height:42rpx;'></image>
+      <view style='width:10rpx;'></view>
+      <text style='color:black;font-size:33rpx;'>{{mUserinfo.red_packet}}元</text>
+    </view>
+    <view hover-class="activity-hover" class='item-red-btn'>
+      <text style='color:white;font-size:30rpx;'>提现</text>
+    </view>
+  </view>
+  <view class='mfenge-content'></view>
+  <view class='detail-content1-view'>
+    <view class='detail-money-view'>
+      <text style='color:black;font-size:33rpx;'>我的金币</text>
+      <view style='width:10rpx;'></view>
+      <image src='../../img/wealth/yuedubi_icon.png' style='width:42rpx;height:42rpx;'></image>
+      <view style='width:10rpx;'></view>
+      <text style='color:black;font-size:33rpx;'>{{mUserinfo.gold_coins}}</text>
+    </view>
+  </view>
+  <view class='mfenge-content'></view>
+  <view class='detail-content2-view'>
+    <text style='color:black;font-size:22rpx;'>读过{{mUserinfo.read_book.read_chapter}}章：共赚取金币{{mUserinfo.read_book.rewards_gold_coins}}</text>
+    <view style='height:10rpx;'></view>
+    <view class='du-text-view'>
+      <text style='color:black;font-size:22rpx;'>总时长：{{mUserinfo.read_book.read_total_time}}分钟</text>
+      <view style='width:20rpx;'></view>
+      <text style='color:black;font-size:22rpx;'>总文字：{{mUserinfo.read_book.read_words}}字</text>
+    </view>
+
+
+    <view class=''></view>
+  </view>
+  <view class='mfenge-content'></view>
+  <view class='detail-content2-view'>
+    <text style='color:black;font-size:22rpx;'>我的免费书籍：{{userinfo.read_book.free_book}}本</text>
+    <view style='height:10rpx;'></view>
+    <view class='du-text-view'>
+      <text style='color:black;font-size:22rpx;'>收藏{{userinfo.read_book.favorite_book}}本</text>
+      <view style='width:20rpx;'></view>
+      <view class='du-text-view'>
+        <text style='color:black;font-size:22rpx;'>发布</text>
+        <text style='color:red;font-size:22rpx;'>{{userinfo.read_book.my_book}}</text>
+        <text style='color:black;font-size:22rpx;'>本</text>
+      </view>
+    </view>
+  </view>
+  <view class='mfenge-content'></view>
+  <view class='detail-content1-view'>
+    <view hover-class="activity-hover" class='item-red-btn' style='width:250rpx;' bindtap='gotoGame'>
+      <text style='color:white;font-size:26rpx;'>去玩游戏变现</text>
+    </view>
+    <view hover-class="activity-hover" class='item-red-btn' style='width:250rpx;' bindtap='gotoNovel'>
+      <text style='color:white;font-size:26rpx;'>继续看小说赚钱</text>
+    </view>
+  </view>
+</view>
+
+<!-- 任务 -->
+<view style='height:10rpx;'></view>
+<view class='task-title-view'>
+  <text style='color:#6d6d6d;font-size:28rpx;font-weight:bold'>做任务赚钱</text>
+</view>
+
+<task-list title="{{newbieTasks.title}}" icon="{{newbieTasks.icon}}" listData="{{newbieTasks.list}}" bind:itemBtnEvent="onClickTaskItem" />
+<task-list title="{{dailyTasks.title}}" icon="{{dailyTasks.icon}}" listData="{{dailyTasks.list}}" bind:itemBtnEvent="onClickTaskItem" />
+<view style='height:20rpx'></view>

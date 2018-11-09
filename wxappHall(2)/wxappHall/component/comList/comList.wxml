@@ -1,0 +1,23 @@
+<!--component/comList/comList.wxml-->
+<view class='list-view-container'>
+  <view class='list-bg' style='height: {{listData.length*96+(listData.length-1)*2}}rpx;'></view>
+</view>
+<view class='list-container'>
+  <block wx:for="{{listData}}" wx:key="id">
+    <view wx:if="{{index}}" class='fenge-view'>
+      <view class='fenge-content'></view>
+    </view>
+    <view class='content-container' hover-class="activity-hover">
+      <view class='content-view'>
+        <text style='color:black;font-size:30rpx; font-family: "SimHei";'>{{item.title}}</text>
+        <view style='display:flex;flex-direction: row;align-items: center;justify-content:space-between;height:100%;'>
+          <text style='color:{{item.isHot==true ? "red" : "gray"}};font-size:25rpx; font-family: "Microsoft YaHei";'>{{item.desc}}</text>
+          <view style='width:20rpx;'></view>
+          <image src='../../img/self/to.png' style='width:16rpx;height:35rpx;'></image>
+        </view>
+      </view>
+    </view>
+
+
+  </block>
+</view>

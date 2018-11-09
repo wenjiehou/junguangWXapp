@@ -1,0 +1,18 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+
+
+.userinfo-avatar {
+  width: 110rpx;
+  height: 110rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
