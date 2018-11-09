@@ -1,14 +1,15 @@
 var isDebug = true;
 var version = "/v1/"
-var serverName = "http://localhost:5564";
+var serverName = "http://192.168.0.169:5564"; 
 
-var preLogin = this.serverName + this.version + "preLogin";
-var login = this.serverName + this.version +"login";
-var updateSession = this.serverName + this.version + "updateSession";
+var preLogin = serverName + version + "preLogin";
+
+var login = serverName + version +"login";
 
 module.exports = {
   isDebug:isDebug,
+  version: version,
+  serverName:serverName,
   preLogin: preLogin,
-  login: login,
-  severName:serverName
+  login: login
 }

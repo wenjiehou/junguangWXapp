@@ -18,6 +18,7 @@ type User struct {
 	Credit     uint       //积分
 	Recomends  []Recomend `gorm:"ForeignKey:UserID"` //玩家推荐的人
 	BeRecomend uint       //玩家被谁推荐的
+	Wxkey      string     `gorm:"size:100"`
 }
 
 type UserModel struct {

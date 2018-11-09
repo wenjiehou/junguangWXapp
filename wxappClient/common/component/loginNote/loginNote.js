@@ -1,5 +1,6 @@
 // common/component/loginNote/loginNote.js
 var app = getApp();
+var login = require("../../js/login.js");
 Component({
   /**
    * 组件的属性列表
@@ -18,6 +19,8 @@ Component({
 
   },
 
+  
+ 
   /**
    * 组件的方法列表
    */
@@ -37,11 +40,20 @@ Component({
         app.globalData.signature = e.detail.signature
         app.globalData.encryptedData = e.detail.encryptedData
         app.globalData.iv = e.detail.iv
+
+        login.login({
+          complete: function (userData) {
+            console.log("login sucess!!");
+            // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+            // 所以此处加入 callback 以防止这种情况
+            if (app.userInfoReadyCallback) {
+              app.userInfoReadyCallback(e.detail)
+            }
+          }
+        });
       }
 
-      if (app.userInfoReadyCallback) {
-        app.userInfoReadyCallback(e.detail)
-      }
+  
 
       //todo
 

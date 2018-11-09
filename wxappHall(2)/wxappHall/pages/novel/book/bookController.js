@@ -46,7 +46,7 @@ var  reqChapterDeatil = function(callObj){
     complete: function () {
     }
   })
-}
+} 
 
 //请求收藏某本书
 var reqMarkbook = function(callObj){

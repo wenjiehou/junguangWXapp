@@ -92,5 +92,17 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getUserInfo: function (e) {
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    app.globalData.rawData = e.detail.rawData
+    app.globalData.signature = e.detail.signature
+    app.globalData.encryptedData = e.detail.encryptedData
+    app.globalData.iv = e.detail.iv
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
   }
 })

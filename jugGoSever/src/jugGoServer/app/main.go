@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+	//	"jugGoServer/test"
 	"jugGoServer/server"
-	"jugGoServer/test"
 	"os"
 	"os/signal"
 	"runtime"
@@ -21,7 +21,7 @@ func main() {
 	fmt.Println("server start !")
 	server.Start()
 
-	test.TestGorm()
+	//	test.TestGorm()
 
 	exitChan := make(chan struct{})
 	signalChan := make(chan os.Signal, 1)
