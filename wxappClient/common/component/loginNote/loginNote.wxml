@@ -1,15 +1,18 @@
-<!--common/component/loginNote/loginNote.wxml-->
+<!--common/component/loginNote/loginNote.wxml--> 
 
 <view wx:if="{{showModal}}" class="modal-mask" catchtouchmove="preventTouchMove">
 <view class='pop-view-bg'>
    <view class='pop-bg'>
-   <image bindtap='hideModal' src='../../../img/common/guanbi_button.png' style='width:80rpx;height:80rpx;margin-left:500rpx'></image>
+    <image bindtap='hideModal' src='../../../img/common/guanbi_button.png' style='width:80rpx;height:80rpx;margin-left:500rpx'></image>
      <button class='share-btn' open-type='getUserInfo' bindgetuserinfo="getUserInfo">
           <view class='reward-bottom-btn' hover-class="activity-hover" style='width:340rpx;'>
-            <text style='color:white;font-size:32rpx;'>登陆</text>
+            <text style='color:white;font-size:32rpx;'>授权登录</text>
           </view>
-        </button>
+      </button>
+      <view style='height:100rpx'></view>
+        <text style='color:white;font-size:40rpx;'>新用户授权，送100福利币</text>
    </view>
+ 
 </view>
 </view>
 

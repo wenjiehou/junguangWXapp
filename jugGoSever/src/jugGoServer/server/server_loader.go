@@ -3,6 +3,7 @@ package server
 import (
 	"fmt"
 	"jugGoServer/net/httpServer"
+	"jugGoServer/net/ipc"
 	"jugGoServer/server/controller"
 	"strconv"
 	"time"
@@ -24,8 +25,10 @@ func Start() {
 	time.Sleep(1 * time.Second)
 	controller.Redis_ClearRedis()
 
+	//我们提供一个协程，单独取维护access_token
+	ipc.StartMiddleServer()
+	go httpServer.StartHttp(controller.RunTimeConfig.GMHttp.Ip, controller.RunTimeConfig.GMHttp.Port)
+
 	//初始化定时任务 todo
 	controller.InitCrontab()
-
-	go httpServer.StartHttp(controller.RunTimeConfig.GMHttp.Ip, controller.RunTimeConfig.GMHttp.Port)
 }

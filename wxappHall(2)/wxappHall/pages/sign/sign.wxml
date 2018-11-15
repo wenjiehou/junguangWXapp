@@ -1,6 +1,6 @@
 <!--pages/sign/sign.wxml-->
 <view class='bc_red'>
-  <!-- <view class='sign-view'>
+  <view class='sign-view'>
     <block wx:for="{{signList}}" wx:key="date">
       <view wx:if='{{index}}' class='sign-fenge'></view>
       <block wx:if='{{item.before}}'>
@@ -27,7 +27,7 @@
         </view>
       </block>
     </block>
-  </view> -->
+  </view>
 
   <image src='../../img/sign/qiandaozi.png' style='width:526rpx;height:48rpx;'></image>
   <view class='top-fenge'>

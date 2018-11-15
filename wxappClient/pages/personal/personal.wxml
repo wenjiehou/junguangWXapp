@@ -7,7 +7,7 @@
     </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text style='color:white;font-size:30rpx;'>ID 1245688</text>
+      <text style='color:white;font-size:30rpx;'>ID {{10000000+userInfo.userId}}</text>
     </block>
   </view> 
 </view>

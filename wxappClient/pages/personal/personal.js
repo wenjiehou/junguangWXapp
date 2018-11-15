@@ -1,5 +1,6 @@
 // pages/personal/personal.js
 const app = getApp();
+var login = require("../../common/js/login.js")
 
 Page({
 
@@ -100,9 +101,17 @@ Page({
     app.globalData.signature = e.detail.signature
     app.globalData.encryptedData = e.detail.encryptedData
     app.globalData.iv = e.detail.iv
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    login.login({
+      complete: function (userId) {
+        console.log("login sucess!!", userId);
+        app.globalData.userInfo.userId = userId;
+        app.globalData.logined = true;
+        // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+        // 所以此处加入 callback 以防止这种情况
+        if (app.userInfoReadyCallback) {
+          app.userInfoReadyCallback(e.detail)
+        }
+      }
+    });
   }
 })

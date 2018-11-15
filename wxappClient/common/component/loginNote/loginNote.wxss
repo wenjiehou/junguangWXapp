@@ -3,21 +3,21 @@
 @import "../../wxss/pageCommon.wxss";
 
 .pop-bg{
-  width: 600rpx;
+  width: 600rpx; 
   height: 800rpx;
   display: flex;
   flex-direction: column;
   justify-content:flex-start;
   align-items: center;
 
-  background:rgb(248, 123, 123);
+  background:#d8dfd4;
   border-radius: 50rpx;
 }
 
 .reward-bottom-btn{
   width: 86%;
   height: 80rpx;
-  background: #f00;
+  background: #85c461;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,1 +1,125 @@
 /* pages/profit/profit.wxss */
+@import "../../common/wxss/popCommon.wxss";
+
+.top-view{
+  display: flex;
+  flex-direction:  row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left:  20rpx;
+  height: 80rpx;
+  /* background: red; */
+}
+
+.font-top{
+  color:black;
+  font-size:33rpx;
+  font-weight:bold;
+}
+
+.deatil-view{
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+  height: 300rpx;
+  box-shadow: 0 2px 5px  #aaaaaa;
+  background: #fff;
+  border-radius: 10rpx;
+}
+
+.sign-top{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 96%;
+  height: 70rpx;
+  /* background: yellow; */
+  
+
+}
+
+.sign-middle{
+ display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items:center;
+  height: 120rpx;
+  width: 96%;
+}
+
+.sign-bottom{
+   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 90rpx;
+   width: 96%;
+}
+
+.sign-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 86rpx;
+  height: 100%;
+  box-shadow: 0 2px 8px  #888888;
+  background: #fff;
+  border-radius: 10rpx;
+}
+
+.sign-icon{
+  display: flex;
+  position: absolute;
+}
+
+.sign-btn{
+  display:flex;flex-direction: row;align-items: center;width: 130rpx;height: 60rpx;border-radius: 10rpx;background: #85c461;justify-content: space-around;box-shadow: 0 1px 2px  #85c461;
+}
+
+.pop-bg{
+  width: 640rpx;
+  height: 500rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
+  background: #d4dfcf;
+  border-radius: 20rpx;
+  box-shadow: 0 1px 2px  #85c461;
+}
+
+.pop-title{
+    display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 96%;
+  height: 70rpx;
+}
+
+.time-picker{
+ border: 1rpx;
+ border-style: solid;
+ border-color: rgb(110, 104, 104);
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+ align-items: center;
+}
+
+.column-gap{
+  height: 10rpx;
+}
+
+.noborder-btn {
+  background: none !important;
+}
+
+.noborder-btn::after {
+  border: none;
+}

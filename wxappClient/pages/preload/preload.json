@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "登录中",
+  "usingComponents": {
+    "login-note": "../../common/component/loginNote/loginNote"
+  }
+
+}

@@ -18,8 +18,6 @@ Component({
   data: {
 
   },
-
-  
  
   /**
    * 组件的方法列表
@@ -42,10 +40,12 @@ Component({
         app.globalData.iv = e.detail.iv
 
         login.login({
-          complete: function (userData) {
-            console.log("login sucess!!");
+          complete: function (userId) {
+            console.log("login sucess!!", userId);
             // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
             // 所以此处加入 callback 以防止这种情况
+            app.globalData.userInfo.userId = userId;
+            app.globalData.logined = true;
             if (app.userInfoReadyCallback) {
               app.userInfoReadyCallback(e.detail)
             }

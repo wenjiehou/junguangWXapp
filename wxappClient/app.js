@@ -27,10 +27,12 @@ App({
                 temp.globalData.encryptedData = res.encryptedData
                 temp.globalData.iv = res.iv
 
-                login.login({complete:function(userData){
-                  console.log("login sucess!!", userData);
+                login.login({complete:function(userId){
+                  console.log("login sucess!!", userId);
+                  temp.globalData.userInfo.userId = userId;
+                  temp.globalData.logined = true;
                   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-                // 所以此处加入 callback 以防止这种情况
+                  // 所以此处加入 callback 以防止这种情况
                   if (temp.userInfoReadyCallback) {
                     temp.userInfoReadyCallback(res)
                   }
@@ -56,6 +58,7 @@ App({
 
   },
   globalData: {
+    logined :false,
     userInfo: null,
     rawData: null,
     signature: null,

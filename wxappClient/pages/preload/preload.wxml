@@ -1,0 +1,2 @@
+<!--pages/preload/preload.wxml-->
+<login-note showModal="{{!hasUserInfo}}"></login-note> 

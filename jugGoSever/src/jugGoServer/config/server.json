@@ -30,7 +30,7 @@
 		"Ip" : "127.0.0.1",
 		"Port" : 6379,
 		"User" : "",
-		"Pwd" : "",
+		"Pwd" : "test123",
 		"TimeOut" : 3,
 		"MaxIdle": 1000,
 		"MaxActive":1000,

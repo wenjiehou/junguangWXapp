@@ -3,7 +3,7 @@ page{
   background:#f3f3f3;
 }
 
-.bc_red {background: #ce4031;width:100%; height: 165rpx;}
+.bc_red {background: #85c461;width:100%; height: 165rpx;}
 
 .userinfo {
   display: flex;

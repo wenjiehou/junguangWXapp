@@ -1,15 +1,17 @@
 {
   "pages": [
-    "pages/home/home",
+    "pages/preload/preload",
     "pages/profit/profit",
+    "pages/home/home",
     "pages/activity/activity",
     "pages/personal/personal",
-      "pages/index/index",
-      "pages/logs/logs"
+    "pages/index/index",
+    "pages/logs/logs"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ce4031",
+    "navigationBarBackgroundColor": "#85c461",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "whlte"
   },
@@ -18,35 +20,31 @@
     "color": "#b5b5b5",
     "selectedColor": "#e13131",
     "backgroundColor": "#ffffff",
-      "list": [
-        {
-          "pagePath": "pages/home/home",
-          "iconPath": "img/tabBar/home_button.png",
-          "selectedIconPath": "img/tabBar/home_button_down.png",
-          "text": "首页"
-        },
-          {
-            "pagePath": "pages/profit/profit",
-            "iconPath": "img/tabBar/zhuanbi_button.png",
-            "selectedIconPath": "img/tabBar/zhuanbi_button_down.png",
-            "text": "赚币"
-          },
-          {
-            "pagePath": "pages/activity/activity",
-            "iconPath": "img/tabBar/huodong_button.png",
-            "selectedIconPath": "img/tabBar/huodong_button_down.png",
-            "text": "活动"
-          },
-          {
-            "pagePath": "pages/personal/personal",
-            "iconPath": "img/tabBar/geren_button.png",
-            "selectedIconPath": "img/tabBar/geren_button_down.png",
-            "text": "个人"
-          }
-      ]
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "img/home_button.png",
+        "selectedIconPath": "img/home_button_down.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/profit/profit",
+        "iconPath": "img/zhuan_button.png",
+        "selectedIconPath": "img/zhuan_button_down.png",
+        "text": "赚币"
+      },
+      {
+        "pagePath": "pages/activity/activity",
+        "iconPath": "img/huodong_button.png",
+        "selectedIconPath": "img/huodong_button_down.png",
+        "text": "活动"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "iconPath": "img/geren_button.png",
+        "selectedIconPath": "img/geren_button_down.png",
+        "text": "个人"
+      }
+    ]
   }
-
-
-
-
 }
