@@ -24,6 +24,15 @@ var preLogin = function (callObj) {
 //这里是请求登录的，会带上玩家的信息
 var login = function (callObj) {//
   var temp = this;
+  var loginParam = wx.getLaunchOptionsSync().query;//获取用户的启动数据，
+
+  //判断这个人是不是从朋友分享
+
+  var fromUserId = 0;//表示没有人推荐
+
+  if (loginParam.fromUserId != undefined){
+    fromUserId = loginParam.fromUserId
+  }
 
   console.log("wxkey::", wx.getStorageSync("wxkey"));
   wx.request({
@@ -34,7 +43,8 @@ var login = function (callObj) {//
       rawData: getApp().globalData.rawData,
       signature: getApp().globalData.signature,
       encryptedData: getApp().globalData.encryptedData,
-      iv: getApp().globalData.iv
+      iv: getApp().globalData.iv,
+      fromUserId: parseInt(fromUserId) ,
     },
     method: "POST",
     header: {
@@ -42,12 +52,16 @@ var login = function (callObj) {//
     },
 
     success: function (res) {
+      config.tryLoginNum += 1
       console.log("login....", res);
       if (res.data.code == 0) {
         if (callObj && callObj.complete) {
           callObj.complete(res.data.data);
         }
       } else {//wxkey不对了,重新获取
+        if (config.tryLoginNum >= 2){
+          return
+        }
         reqWxkey({
           complete: function () {//重新获取好了再来一次
             //这个时候需要重新getuserinfo

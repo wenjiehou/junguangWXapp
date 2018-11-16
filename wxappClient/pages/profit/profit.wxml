@@ -7,7 +7,7 @@
 </view>
 <view class='deatil-view'>
   <view class='sign-top'>
-    <text style='color:black;font-size:30rpx;'>天天领金币</text>
+    <text style='color:black;font-size:30rpx;font-weight:normal;'>天天领金币</text>
   </view>
   <view class='sign-middle'>
     <block wx:for="{{signData.config}}" wx:key="day">
@@ -31,6 +31,40 @@
     </view>
   </view>
 </view>
+<view style='height:20rpx;'></view>
+<view class='daytask-view'>
+  <view style='height:15rpx;'></view>
+  <text style='color:black;font-size:30rpx;width:96%;font-weight:normal;'>每日任务赚金币</text>
+  <block wx:for="{{daytasks}}">
+    <view class='daytask-single'>
+      <view class='daytask-single-left'>
+
+        <text wx:if="{{item.type==1}}" style='font-size:28rpx;width:96%;'>成功邀请{{item.value}}个好友</text>
+        <text wx:elif="{{item.type==2}}" style='font-size:28rpx;width:96%;'>参加抽奖</text>
+        <text wx:elif="{{item.type==3}}" style='font-size:28rpx;width:96%;'>参加幸运夺宝</text>
+        <text wx:elif="{{item.type==4}}" style='font-size:28rpx;width:96%;'>玩任意{{item.value}}个游戏</text>
+      </view>
+      <view class='daytask-single-middle'>
+        <text style='font-size:28rpx;width:96%;'>金币 +{{item.reward}}</text>
+      </view>
+      <view class='daytask-single-right'>
+        <button wx:if="{{item.type == 1}}" open-type='share' class='noborder-btn' style='margin-left:50rpx;'>
+          <view hover-class="activity-hover" class='sign-btn' style='height: 60rpx;'>
+            <text wx:if="{{item.compNum == 0}}" style='color:white;font-size:28rpx;'>去完成</text>
+            <text wx:if="{{item.compNum == 1}}" style='color:white;font-size:28rpx;'>已完成</text>
+          </view>
+        </button>
+        <view wx:else hover-class="activity-hover" class='sign-btn' style='height: 60rpx;'>
+          <text wx:if="{{item.compNum == 0}}" style='color:white;font-size:28rpx;'>去完成</text>
+           <text wx:if="{{item.compNum == 1}}" style='color:white;font-size:28rpx;'>已完成</text>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view style='height:10rpx;'></view>
+
+</view>
+
 
 <view wx:if="{{showMode}}" class="modal-mask" catchtouchmove="preventTouchMove">
   <view class='pop-view-bg'>

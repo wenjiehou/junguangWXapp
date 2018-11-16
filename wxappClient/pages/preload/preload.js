@@ -16,14 +16,17 @@ Page({
    */
   onLoad: function (options) {
     console.log("home onLoad options::", options);
-    if (options && options.toPage) {
-      wx.switchTab({
-        url: "../../"+options.toPage
-      })
-      return
-      }
+    
     console.log("app.globalData.logined::", app.globalData.logined);
     app.userInfoReadyCallback = res => {//这里就是登录成功了！！
+
+      if (options && options.toPage) {
+        wx.switchTab({
+          url: "../../" + options.toPage
+        })
+        return
+      }
+      //下面是默认
       wx.switchTab({
         url: '../profit/profit'
       })

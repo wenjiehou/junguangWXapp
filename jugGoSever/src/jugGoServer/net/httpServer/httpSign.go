@@ -31,6 +31,8 @@ func getSignData(w http.ResponseWriter, r *http.Request) {
 	user := getUserByWxkey(wxkey)
 	if user != nil {
 		signConfig := controller.Redis_ReadSignConfig(wxkey)
+
+		//		controller.Redis_ReadDaytasks()
 		//我们需要两个数据 一个是当前连续签到的天数 一个是今天是否已经签到
 
 		timeStr := time.Now().Format("2006-01-02")

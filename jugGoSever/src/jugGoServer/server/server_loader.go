@@ -23,10 +23,11 @@ func Start() {
 
 	controller.Redis_InitRedisDb(controller.RunTimeConfig.Redis.Ip+":"+strconv.Itoa(controller.RunTimeConfig.Redis.Port), controller.RunTimeConfig.Redis.Pwd, controller.RunTimeConfig.Redis.MaxIdle, controller.RunTimeConfig.Redis.MaxActive, controller.RunTimeConfig.Redis.TimeOut)
 	time.Sleep(1 * time.Second)
-	controller.Redis_ClearRedis()
+	controller.Redis_initData()
 
 	//我们提供一个协程，单独取维护access_token
 	ipc.StartMiddleServer()
+	time.Sleep(time.Second)
 	go httpServer.StartHttp(controller.RunTimeConfig.GMHttp.Ip, controller.RunTimeConfig.GMHttp.Port)
 
 	//初始化定时任务 todo

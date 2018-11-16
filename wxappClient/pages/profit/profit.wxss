@@ -123,3 +123,51 @@
 .noborder-btn::after {
   border: none;
 }
+
+.daytask-view{
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20rpx 15rpx 20rpx 15rpx;
+  box-shadow: 0 2px 5px  #aaaaaa;
+  background: #fff;
+  border-radius: 10rpx;
+}
+
+.daytask-single{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width:  94%;
+
+
+  height: 64rpx;
+}
+
+.daytask-single-left{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 40%;
+
+}
+
+.daytask-single-middle{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 30%;
+}
+
+.daytask-single-right{
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-end;
+  align-items: center;
+  width: 30%;
+
+}

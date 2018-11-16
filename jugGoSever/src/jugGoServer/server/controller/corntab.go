@@ -12,6 +12,8 @@ import (
 
 	"net/http"
 
+	"jugGoServer/myconst"
+
 	"github.com/garyburd/redigo/redis"
 	"github.com/robfig/cron"
 )
@@ -25,6 +27,9 @@ var middleServer *ipc.MiddleServer
 //初始化定时任务计划
 func InitCrontab() {
 	middleServer = ipc.GetMiddleServer() //这里后面改成使用标准ipc，暂时先用着
+	if myconst.NeedClearDaytaskComp == true {
+		Redis_DelDaytaskComp()
+	}
 	time.Sleep(10 * time.Second)
 
 	c := cron.New()
@@ -42,6 +47,10 @@ func NoticeTask() { //用一个通道通知一下，另一边 for 读这个chan�
 	timeStr := now.Format("2006-01-02")
 	today, _ := time.ParseInLocation("2006-01-02", timeStr, time.Local) //今天的凌晨
 	//	fmt.Println("NoticeTask hour::", hour, timeStr)
+
+	if hour == 0 { //凌晨
+		go Redis_DelDaytaskComp() //这里有一个服务器重启的问题，服务器重启不能跨过凌晨
+	}
 
 	go NoticeSignRecom(today, hour) //这里是执行签到提醒的
 

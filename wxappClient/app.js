@@ -2,7 +2,10 @@
 var login = require("./common/js/login.js");
 
 App({
-  onLaunch: function () {
+  onLaunch: function (options) {
+    console.log("onLaunch dddddxxxxxxxxxxxxxx.....", options);
+
+  
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -51,11 +54,10 @@ App({
       })
 
     }})
+  },
 
-
-   
-
-
+  onShow: function (options){
+    console.log("onShow dddddxxxxxxxxxxxxxx.....", options);
   },
   globalData: {
     logined :false,

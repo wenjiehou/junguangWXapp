@@ -2,12 +2,17 @@ var isDebug = true;
 var version = "/v1/"
 var serverName = "http://192.168.0.169:5564"; 
 
+var tryLoginNum = 0;
+
 var preLogin = serverName + version + "preLogin";
 var login = serverName + version +"login";
 var getCredit = serverName + version +"getCredit";
+
 var getSignData = serverName + version + "getSignData";
 var reqSign = serverName + version + "reqSign";
 var signRecom = serverName + version + "signRecom";
+
+var getDaytask = serverName + version + "getDaytask";
 
 
 module.exports = {
@@ -20,4 +25,5 @@ module.exports = {
   getCredit: getCredit,
   reqSign: reqSign,
   signRecom: signRecom,
+  getDaytask: getDaytask,
 }

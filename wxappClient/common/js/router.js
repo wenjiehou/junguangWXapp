@@ -3,6 +3,7 @@ var config = require("./config.js");
 
 var getSignData = function (callback) {
   var temp = this;
+  
   wx.request({
     url: config.getSignData, //仅为示例，并非真实的接口地址
     data: {
@@ -96,6 +97,28 @@ var signRecom = function (callObj) {//
 
 }
 
+//获取用户每日任务完成情况的 
+var getDaytask = function (callback) {
+  var temp = this;
+  wx.request({
+    url: config.getDaytask, //仅为示例，并非真实的接口地址
+    data: {
+      wxkey: wx.getStorageSync("wxkey"),
+    },
+    method: "GET",
+    header: {
+      'content-type': 'application/json' // 默认值
+    },
+    success: function (res) {
+      console.log("getDaytask::",res);
+      if (res.data.code == 0) {
+        if (callback && callback.complete) {
+          callback.complete(res.data.data);
+        }
+      }
+    }
+  })
+}
 
 
 
@@ -105,4 +128,5 @@ module.exports = {
   getCredit: getCredit,
   reqSign: reqSign,
   signRecom: signRecom,
+  getDaytask: getDaytask,
 }

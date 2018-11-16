@@ -6,24 +6,24 @@ import (
 
 type User struct {
 	gorm.Model
-	Openid     string `gorm:"size:50" gorm:"index"`
-	Unionid    string `gorm:"size:50" gorm:"index"` //跨小程序小游戏需要用
-	SessionKey string `gorm:"size:50"`
-	NickName   string `gorm:"size:50"`
-	AvatarUrl  string `gorm:"size:255"`
-	Gender     uint
-	GpsLan     float32    //经度
-	GpsLat     float32    //纬度
-	City       string     `gorm:"size:30"`
-	Country    string     `gorm:"size:30"`
-	Credit     uint       //积分
-	Language   string     `gorm:"size:20"`
-	Province   string     `gorm:"size:30"`
-	Authorize  bool       //用户是否授权过 `gorm:"size:30"`
-	Wxkey      string     `gorm:"size:50" gorm:"index"`
-	Recomends  []Recomend `gorm:"ForeignKey:UserID"` //玩家推荐的人
-	BeRecomend uint       //玩家被谁推荐的
-
+	Openid          string `gorm:"size:50" gorm:"index"`
+	Unionid         string `gorm:"size:50" gorm:"index"` //跨小程序小游戏需要用
+	SessionKey      string `gorm:"size:50"`
+	NickName        string `gorm:"size:50"`
+	AvatarUrl       string `gorm:"size:255"`
+	Gender          uint
+	GpsLan          float32    //经度
+	GpsLat          float32    //纬度
+	City            string     `gorm:"size:30"`
+	Country         string     `gorm:"size:30"`
+	Credit          uint       //积分
+	Language        string     `gorm:"size:20"`
+	Province        string     `gorm:"size:30"`
+	Authorize       bool       //用户是否授权过 `gorm:"size:30"`
+	Wxkey           string     `gorm:"size:50" gorm:"index"`
+	Recomends       []Recomend `gorm:"ForeignKey:UserID"` //玩家推荐的人
+	BeRecomend      uint       //玩家被谁推荐的
+	UsedRecomendNum uint       //已经使用掉的推荐玩家数量
 }
 
 type UserModel struct {

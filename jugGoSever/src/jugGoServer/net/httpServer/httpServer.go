@@ -21,6 +21,7 @@ func StartHttp(ip string, port int) {
 	http.HandleFunc("/v1/getSignData", getSignData) //获取签到相关信息
 	http.HandleFunc("/v1/reqSign", reqSign)         //签到请求
 	http.HandleFunc("/v1/signRecom", signRecom)     //明日签到提醒请求
+	http.HandleFunc("/v1/getDaytask", getDaytask)
 
 	err := http.ListenAndServe(ip+":"+strconv.Itoa(port), nil)
 	if err != nil {
@@ -133,6 +134,8 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 		user, _ = model.GetUserModel().GetUserByWxkey(loginInfo.Wxkey) //这个wxkey也能找到的
 
+		fmt.Println("loginInfo.FromUserId::", loginInfo.FromUserId)
+
 		if user != nil {
 			singnature := until.GetSha1String(loginInfo.RawData + user.SessionKey)
 			if loginInfo.Signature == singnature {
@@ -140,6 +143,22 @@ func login(w http.ResponseWriter, r *http.Request) {
 				if user.Authorize == false {
 					user.Authorize = true
 					user.Credit += 100 //后面改成可配置的 todo
+
+					if loginInfo.FromUserId != 0 { //这个玩家是FromUserId推荐过来的
+						recomend := &model.Recomend{}
+						recomend.Chanel = model.Recomend_Chanel_wxappShare //这里是通过微信小程序分享进来的
+						recomend.UserID = loginInfo.FromUserId
+						recomend.RecomendUser = user.ID
+
+						err := model.GetRecomendModel().Save(recomend)
+
+						newuser, _ := model.GetUserModel().GetUserById(loginInfo.FromUserId)
+						controller.Redis_CatchUserInfo(newuser) //缓存这个用户的信息
+
+						if err == nil { //推荐信息储存成功了
+							updateUserDaytask(newuser) //更新用户每日任务完成的情况
+						}
+					}
 				}
 
 				user.AvatarUrl = loginInfo.UserInfo.AvatarUrl

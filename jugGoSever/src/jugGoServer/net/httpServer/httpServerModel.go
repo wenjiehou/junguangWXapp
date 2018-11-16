@@ -28,6 +28,7 @@ type LoginModel struct {
 	Signature     string      `json:"signature"`
 	EncryptedData string      `json:"encryptedData"`
 	Iv            string      `json:"iv"`
+	FromUserId    uint        `json:"fromUserId"`
 }
 
 type SignModel struct {

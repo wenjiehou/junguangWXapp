@@ -1,6 +1,7 @@
 // pages/profit/profit.js
 
 var router = require("../../common/js/router.js");
+var app = getApp();
 
 Page({
 
@@ -17,6 +18,7 @@ Page({
       signed: false,
       conti: 0, //已经连续签到的天数，不包括今天
     },
+    daytasks:[],
 
 
   },
@@ -25,7 +27,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-   
+    wx.showShareMenu({
+      withShareTicket: true,
+      success: function () {
+        console.log("onLoad 设置分享 withShareTicket 成功");
+      }
+    })
+
 
     this.data.seleSignTime = [];
     var i = 6;
@@ -37,7 +45,7 @@ Page({
     }
 
     var signRecomTimeIdx = wx.getStorageSync("signRecomTimeIdx")
-    if (!signRecomTimeIdx){
+    if (!signRecomTimeIdx) {
       signRecomTimeIdx = 5
     }
     this.data.seleTimeIdx = signRecomTimeIdx;
@@ -61,6 +69,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    wx.showShareMenu({
+      withShareTicket: true,
+      success: function () {
+        console.log("onshow 设置分享 withShareTicket 成功");
+      }
+    })
+
     var temp = this;
     router.getCredit({
       complete: function(data) {
@@ -110,6 +125,35 @@ Page({
 
       }
     })
+
+    //请求每日任务数据
+    router.getDaytask({
+      complete: function(data) {
+        //鸟儿的，需要先排序一下哈，客户端做咯
+        data.sort(function(a ,b) {
+          if (a.type < b.type){
+            return -1
+          } else if (a.type == b.type) {
+            if (a.value < b.value){
+              return -1
+            }else{
+              return 1
+            }
+          }else {
+            return 1;
+          }
+        })
+
+        temp.setData({
+          daytasks: data,
+        });
+
+
+      }
+    })
+
+
+
   },
 
   /**
@@ -131,7 +175,7 @@ Page({
    */
   onPullDownRefresh: function() {
 
-  },
+  }, 
 
   /**
    * 页面上拉触底事件的处理函数
@@ -143,13 +187,17 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
-
+  onShareAppMessage: function (res) {
+    return {
+      title: '邀请好友得福利币',
+      // query: "fromUserId=" + app.globalData.userInfo.userId,//key1=val1&key2=val2 的格式。 wx.getLaunchOptionSync() 或 wx.onShow() 获取启动参数中的 query
+      path: 'pages/preload/preload?toPage=pages/profit/profit&fromUserId=' + app.globalData.userInfo.userId
+    }
   },
 
   //下面是开发者自己定义的事件
   reqSign: function() {
-    if (this.data.signData.signed){
+    if (this.data.signData.signed) {
       this.setData({
         showMode: true,
       });

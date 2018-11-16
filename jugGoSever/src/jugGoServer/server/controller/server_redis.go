@@ -57,6 +57,11 @@ func Redis_InitRedisDb(address, password string, maxIdle, maxActive, idleTimeOut
 	return RedisPool, nil
 }
 
+func Redis_initData() {
+	Redis_InitSignConfig()
+	Redis_InitDaytasks()
+}
+
 // 清空Redis RoomKey
 func Redis_ClearRedis() {
 	//reddis数据应该是不需要清的
@@ -122,6 +127,7 @@ func Redis_ReadUserInfo(wxkey string) *model.User {
 
 	v, err := conn.Do("hget", wxkey, "userinfo")
 	if err == nil && v != nil {
+		conn.Do("expire", wxkey, 1800) //失败了也没有关系，读一次内存，就更新下过期时间
 		s, _ := redis.String(v, nil)
 
 		str := []byte(s)

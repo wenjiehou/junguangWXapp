@@ -13,6 +13,40 @@ const (
 //	formId     = "formId"
 )
 
+//初始化签到配置，如果没有的话，就走这里
+func Redis_InitSignConfig() bool {
+	conn := RedisPool.Get()
+	defer conn.Close()
+
+	if conn.Err() != nil {
+		fmt.Println("redis pool getConn failed::", conn.Err())
+		return false
+	}
+
+	v, err := conn.Do("exists", "signConfig")
+
+	if err != nil {
+		fmt.Println("Redis_InitSignConfig failed", err.Error())
+		return false
+	}
+
+	exists, _ := redis.Bool(v, nil)
+	if exists == true {
+		fmt.Println("Redis_InitSignConfig success")
+		return true
+	} else {
+		_, serr := conn.Do("rpush", "signConfig", 10, 20, 30, 40, 50, 60, 70)
+		if serr != nil {
+			fmt.Println("Redis_InitSignConfig failed", serr.Error())
+		} else {
+			fmt.Println("Redis_InitSignConfig success")
+			return true
+		}
+	}
+
+	return false
+}
+
 //从redis中读取签到的配置
 func Redis_ReadSignConfig(wxkey string) map[string]string {
 
@@ -24,7 +58,7 @@ func Redis_ReadSignConfig(wxkey string) map[string]string {
 		return nil
 	}
 
-	conn.Do("expire", wxkey, 1800) //失败了也没有关系
+	//	conn.Do("expire", wxkey, 1800) //失败了也没有关系
 	values, err := redis.Values(conn.Do("lrange", "signConfig", "0", "-1"))
 
 	if err == nil {
@@ -50,7 +84,7 @@ func Redis_CatchSignRecom(openid string, wxkey string, t int, formId string) boo
 		fmt.Println("Redis conn err ::", conn.Err())
 		return false
 	}
-	conn.Do("expire", wxkey, 1800) //失败了也没有关系
+	//	conn.Do("expire", wxkey, 1800) //失败了也没有关系
 
 	conn.Do("multi")
 	//先缓存推荐的formId
