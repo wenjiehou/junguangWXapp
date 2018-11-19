@@ -1,0 +1,406 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>JS之动态table操作</title>
+    <style>
+        #divTable {
+	height: 200;
+	overflow: auto;
+}
+#tab {
+	border: 0px solid black;
+	width: 700;
+	border-collapse: collapse;
+}
+#tab tr {
+	border: 1px solid gray;
+}
+#tab tr td {
+	border: 1px solid #cccccc;
+	padding: 0;
+}
+#yuan {
+	border: 1px solid black;
+	width: 700;
+	border-collapse: collapse;
+}
+#yuan #trHead {
+	background-color: #999999;
+}
+.textAttribute1 {
+	background-color: #CCFF66;
+	width: 40px;
+	text-align: center;
+}
+.textAttribute2 {
+	background-color: #CCFF66;
+	width: 30px;
+}
+.textAttribute3 {
+	width: 40px;
+	text-align: center;
+}
+</style>
+    <script language="javascript">
+        var addEvent = (function () {
+            if (document.addEventListener) {
+                return function (el, type, fn) {
+                    if (el.length) {
+                        for (var i = 0; i < el.length; i++) {
+                            addEvent(el[i], type, fn);
+                        }
+                    } else {
+                        el.addEventListener(type, fn, false);
+                    }
+                };
+            } else {
+                return function (el, type, fn) {
+                    if (el.length) {
+                        for (var i = 0; i < el.length; i++) {
+                            addEvent(el[i], type, fn);
+                        }
+                    } else {
+                        el.attachEvent('on' + type, function () {
+                            return fn.call(el, window.event);
+                        });
+                    }
+                };
+            }
+        })();
+
+        var TabCtr = {
+            selectedElements: [], //选择的纪录
+            nn: 0,     //项号
+            cbName: 'chk',   //选择框name属性
+            selector: false,
+
+            //初始化
+            init: function (parameters) {
+                if (parameters.table) {
+
+                    this.tbody = parameters.table.getElementsByTagName("tbody")[0];
+
+                } else {
+                    throw new Error("Need Param:table");
+                    return;
+                }
+                if (parameters.cbName) this.cbName = parameters.cbName;
+                if (parameters.addRow) this.addRow = parameters.addRow;
+            },
+            onload: function () {
+                //do something..
+            },
+            onunload: function () {
+                this.selectedElements = null;
+                //do something..
+            },
+
+            //选择全部纪录
+            selectAll: function () {
+                var cbs = document.getElementsByName(this.cbName);
+                this.selectedElements.length = 0;
+                for (var i = 0; i < cbs.length; i++) {
+                    cbs[i].checked = this.selector;
+                    if (this.selector) this.selectedElements[this.selectedElements.length] = cbs[i];
+                }
+            },
+
+            //操作纪录
+            selectSingle: function (obj) {
+                if (obj.checked) {
+                    this.selectedElements[this.selectedElements.length] = obj;
+                } else {
+                    for (var i = 0; i < this.selectedElements.length; i++) {
+                        if (this.selectedElements[i] == obj) {
+                            this.selectedElements.splice(i, 1);
+                            return;
+                        }
+                    }
+                }
+            },
+            //创建动态下拉框
+            addSelect: function () {
+                this.nn += 1;
+                var createSelect = document.createElement("select");
+                createSelect.id = this.nn;
+
+                addEvent(createSelect, "change", function () {
+                    TabCtr.chooseSelect(
+                        createSelect.options[createSelect.options.selectedIndex],
+                        createSelect);
+                })
+
+                // if (createSelect.addEventListener) {
+                //     createSelect.addEventListener("onchange", function () {
+                //         TabCtr.chooseSelect(
+                //             createSelect.options[createSelect.options.selectedIndex],
+                //             createSelect);
+                //     });
+                // } else if (createSelect.attachEvent) {
+                //     createSelect.attachEvent("onchange", function () {
+                //         TabCtr.chooseSelect(
+                //             createSelect.options[createSelect.options.selectedIndex],
+                //             createSelect);
+                //     });
+                // }
+
+                //createSelect.appendChild(this.chooseSelect());
+                createSelect.add(document.createElement("OPTION"));
+                createSelect.options[0].text = "请选择";
+                createSelect.options[0].value = 0;
+
+                //获取下拉框选项的值
+                for (var jjj = 1; jjj <= 5; jjj++) {
+
+                    createSelect.add(document.createElement("OPTION"));
+                    createSelect.options[jjj].text = jjj;
+                    createSelect.options[jjj].value = jjj;
+                }
+                return createSelect;
+            },
+
+            //增加一行
+            addRow: function () {
+                var number = this.nn + 1;
+                var tdArray = new Array();
+                var tr = document.createElement("tr");
+
+                for (var tdnum = 0; tdnum <= 16; tdnum++) {
+                    tdArray[tdnum] = document.createElement("td");
+                }
+                tdArray[0].innerHTML = '<input type="checkbox" name="' + this.cbName + '"  onchange="TabCtr.selectSingle(this);"/>';
+                tdArray[0].align = "center";
+                tdArray[0].width = "20";
+                tdArray[1].innerHTML = number;
+                tdArray[1].align = "center";
+                tdArray[1].width = "40";
+                tdArray[2].innerHTML = '<input type="text" name="aaa" readonly="true" class="textAttribute1">';
+                tdArray[3].appendChild(this.addSelect());
+                tdArray[4].innerHTML = '<input type="text" name="bbb" readonly="true" class="textAttribute1">';
+                tdArray[5].innerHTML = '<input type="text" name="ccc" readonly="true" class="textAttribute1">';
+                tdArray[6].innerHTML = '<input type="text" name="ddd" class="textAttribute1" readonly="true">';
+                tdArray[7].innerHTML = '<input type="text" name="eee" class="textAttribute1" readonly="true">';
+                tdArray[8].innerHTML = '<input type="text" name="qcCount" size="5" onchange="TabCtr.chooseText(this)">';
+                tdArray[9].innerHTML = '<input type="text" name="fff" class="textAttribute2" readonly="true">';
+                tdArray[10].innerHTML = '<input type="text" name="ggg" class="textAttribute1" readonly="true">';
+                tdArray[11].innerHTML = '<input type="text" name="hhh" class="textAttribute1" readonly="true">';
+                tdArray[12].innerHTML = '<input type="text" name="yyy" class="textAttribute1" readonly="true">';
+                tdArray[13].innerHTML = '<input type="text" name="jjj" class="textAttribute1" readonly="true">';
+                tdArray[14].innerHTML = '<input type="text" name="kkk" class="textAttribute1" readonly="true">';
+                tdArray[15].innerHTML = '<input type="text" name="lll" class="textAttribute1" readonly="true">';
+                tdArray[16].innerHTML = '<input type="text" name="mmm" class="textAttribute1" readonly="true">';
+
+                for (var trnum = 0; trnum < tdArray.length; trnum++) {
+                    tr.appendChild(tdArray[trnum]);
+                }
+                this.tbody.appendChild(tr);
+                this.scollabc();
+            },
+
+            //删除一行
+            delRow: function () {
+                var cbs = document.getElementsByName(this.cbName);
+
+                if (cbs.length == 0) return;
+                for (var i = 0; i < this.selectedElements.length; i++) {
+
+                    var tr = this.getTRElement(this.selectedElements[i]);
+                    if (tr != null) {
+                        tr.parentNode.removeChild(tr);
+                    }
+                }
+                this.selectedElements.length = 0;
+                document.getElementById("cbSelectAll").checked = false;
+                if (document.getElementsByName(this.cbName).length == 0)
+                    this.nn = 0;
+
+            },
+            //按钮控制
+            addEvent: function (obj, eventName, handler) {
+                // if (document.all) {
+                   
+                //      obj.attachEvent("on" + eventName, handler);
+                // } else {
+                //     obj.addEventListener(eventName, handler, false);
+                // }
+
+                 addEvent(obj,eventName,handler);
+            },
+
+            //得到操作对象所在的行对象
+            getTRElement: function (obj) {
+                while (obj.tagName.toLowerCase() != "tr") {
+                    obj = obj.parentNode;
+                    if (obj.tagName.toLowerCase() == "body") return null;
+                }
+
+                return obj;
+            },
+
+            //得到所操作的行数
+            getRowIndex: function (obj) {
+                var n = 0;
+                var currentRow = obj;
+                while (currentRow.tagName.toLowerCase() != "tr") {
+                    currentRow = currentRow.parentNode;
+                    if (currentRow.tagName.toLowerCase() == "body") {
+                        throw new Error("error");
+                        return null;
+                    }
+                }
+                while (currentRow.previousSibling) {
+                    n++;
+                    currentRow = currentRow.previousSibling;
+                }
+                return n;
+            },
+
+            //下拉框与输入框联动
+            chooseSelect: function (selectObj, trNumber) {
+                document.getElementsByName("eee")[this.getRowIndex(trNumber)].value = selectObj.text;
+                document.getElementsByName("aaa")[this.getRowIndex(trNumber)].value = selectObj.value;
+                document.getElementsByName("bbb")[this.getRowIndex(trNumber)].value = selectObj.value;
+                document.getElementsByName("ccc")[this.getRowIndex(trNumber)].value = selectObj.value;
+                document.getElementsByName("ddd")[this.getRowIndex(trNumber)].value = selectObj.value;
+                document.getElementsByName("fff")[this.getRowIndex(trNumber)].value = selectObj.value;
+                document.getElementsByName("ggg")[this.getRowIndex(trNumber)].value = selectObj.value;
+                document.getElementsByName("yyy")[this.getRowIndex(trNumber)].value = selectObj.value;
+                document.getElementsByName("jjj")[this.getRowIndex(trNumber)].value = selectObj.value;
+                document.getElementsByName("kkk")[this.getRowIndex(trNumber)].value = selectObj.value;
+                document.getElementsByName("lll")[this.getRowIndex(trNumber)].value = selectObj.value;
+                document.getElementsByName("mmm")[this.getRowIndex(trNumber)].value = selectObj.value;
+            },
+
+            //文本框之间联动
+            chooseText: function (obj) {
+                if (obj.value > 0) {
+                    var rr = document.getElementsByName("ggg")[this.getRowIndex(obj)].value;
+                    document.getElementsByName("hhh")[this.getRowIndex(obj)].value = obj.value * rr / 10000;
+                }
+                else {
+                    alert("数量只能为数字，请重新输入");
+                }
+            },
+            //改变滚动条效果
+            scollabc: function () {
+                var obj = document.getElementById("divTable");
+                var psnObject = obj.Span;
+                if (!psnObject) {
+                    psnObject = document.createElement('SPAN');
+                    obj.Span = psnObject;
+                }
+                obj.appendChild(psnObject);
+                psnObject.scrollIntoView(false);
+            }
+
+        }
+        window.onload = function () {
+            TabCtr.init({
+                table: document.getElementById("tab")
+                /*
+                可选参数
+                cbname : string (checkbox's name)
+                addRow : function (custom addRow)
+                */
+            });
+            TabCtr.addEvent(document.getElementById("cbSelectAll"),
+                "click",
+                function () {
+                    TabCtr.selector = document.getElementById("cbSelectAll").checked;
+                    TabCtr.selectAll();
+                });
+
+            TabCtr.addEvent(document.getElementById("btnAdd"),
+                "click",
+                function () {
+                    TabCtr.addRow();
+                });
+            TabCtr.addEvent(document.getElementById("btnDel"),
+                "click",
+                function () {
+                    TabCtr.delRow();
+                });
+            TabCtr.addRow();
+            TabCtr.addRow();
+            TabCtr.addRow();
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="divTable">
+        <center>
+            JS之动态table操作
+        </center>
+        <table id="yuan" align="center">
+            <tr id="trHead">
+                <td align="center" width="20">
+                    <font size="1">全选</font>
+                    <input type="checkbox" id="cbSelectAll" />
+                </td>
+                <td align="center" class="textAttribute3">
+                    <font size="2">项号</font>
+                </td>
+                <td align="center" class="textAttribute3">
+                    <font size="2">货号</font>
+                </td>
+                <td align="center" width="65">
+                    <font size="2">简称</font>
+                </td>
+                <td align="center" class="textAttribute3">
+                    <font size="2">型号</font>
+                </td>
+                <td align="center" class="textAttribute3">
+                    <font size="2">品牌</font>
+                </td>
+                <td align="center" class="textAttribute3">
+                    <font size="2">英名</font>
+                </td>
+                <td align="center" class="textAttribute3">
+                    <font size="2">中名</font>
+                </td>
+                <td align="center" width="60">
+                    <font size="2">数量</font>
+                </td>
+                <td align="center" class="textAttribute3">
+                    <font size="2">单位</font>
+                </td>
+                <td align="center" class="textAttribute3">
+                    <font size="2">单价</font>
+                </td>
+                <td align="center" class="textAttribute3">
+                    <font size="2">金额</font>
+                </td>
+                <td align="center" class="textAttribute3">
+                    <font size="2">参价</font>
+                </td>
+                <td align="center" class="textAttribute3">
+                    <font size="2">规格</font>
+                </td>
+                <td align="center" class="textAttribute3">
+                    <font size="2">供应</font>
+                </td>
+                <td align="center" class="textAttribute3">
+                    <font size="2">毛重</font>
+                </td>
+                <td align="center" class="textAttribute3">
+                    <font size="2">净重</font>
+                </td>
+            </tr>
+        </table>
+        <table id="tab" align="center">
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <table width="700" align="center">
+        <tr align="left">
+            <td colspan="17"><button id="btnAdd">增加</button>
+                <button id="btnDel">删除</button></td>
+        <tr>
+    </table>
+
+    <body>
+        <html>

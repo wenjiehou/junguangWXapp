@@ -1,6 +1,6 @@
 var isDebug = true;
 var version = "/v1/"
-var serverName = "http://192.168.0.169:5564"; 
+var serverName = "http://192.168.0.168:5564"; 
 
 var tryLoginNum = 0;
 

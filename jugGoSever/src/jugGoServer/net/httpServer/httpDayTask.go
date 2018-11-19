@@ -46,6 +46,8 @@ func getDaytask(w http.ResponseWriter, r *http.Request) {
 			comp := controller.Redis_ReadDaytaskComp(user.ID, v.Type, v.Value)
 			if comp == true {
 				taskUser.CompNum = 1
+			} else {
+				//这里不处理，比较耗性能
 			}
 
 			taskUser.Type = v.Type
